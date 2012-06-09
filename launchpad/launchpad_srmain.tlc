@@ -1,0 +1,165 @@
+%selectfile NULL_FILE
+
+%function FcnSingleTaskingMain() void
+  
+  %if GenerateSampleERTMain
+    %assign ::CompiledModel.GenerateSampleERTMain = TLC_FALSE
+    %warning Overriding example ert_main.c!
+  %endif
+
+  %assign cFile = LibCreateSourceFile("Source", "Custom", "ert_main")
+
+  %openfile tmpBuf
+  static boolean_T OverrunFlag = 0;\
+  
+  %<SLibDeclareFcnProtoCtlVariables()>\
+  
+  %<LibWriteModelData()>\
+  %closefile tmpBuf
+  
+  %<LibSetSourceFileSection(cFile, "Definitions", tmpBuf)>
+  
+  %openfile tmpBuf
+  #include "%<LibGetMdlPubHdrBaseName()>.h"
+  #include <msp430.h>
+  //TODO check for Step size (perhaps not here...)
+  #define STEP_SIZE_VLO (%<CompiledModel.FundamentalStepSize>*12000)
+  %closefile tmpBuf
+ 
+  %<LibSetSourceFileSection(cFile, "Includes", tmpBuf)>
+  
+  %openfile tmpBuf
+  %assign fcnReturns = "void"
+  %assign fcnName = "rt_OneStep"
+  %assign fcnParams = ""
+  %assign fcnCategory = "main"
+  %createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
+    Abstract ""; Category fcnCategory; GeneratedBy "bareboard_srmain.tlc"; ...
+    Type "Utility"}
+  %<SLibDumpFunctionBanner(fcnRec)>
+  %undef fcnRec
+  %<fcnReturns> %<fcnName>(%<fcnParams>)
+  {
+    /* Disable interrupts here */
+    
+    /* Check for overun */
+    if (OverrunFlag++) {
+      %<LibSetRTModelErrorStatus("\"Overrun\"")>;
+      return;
+    }
+    
+    /* Save FPU context here (if necessary) */
+    /* Re-enable timer or interrupt here */
+    %if !IsModelReferenceTarget()
+    %assign varsbuf = LibWriteModelInputs()
+    %if varsbuf != ""
+      /* Remove conditional, and set model inputs here */
+      %<varsbuf>\
+    %endif
+    %endif
+    
+    %<LibCallModelStep(0)>\
+    
+    %if !IsModelReferenceTarget()
+    %assign varsbuf = LibWriteModelOutputs()
+    %if varsbuf != ""
+      /* Remove conditional, and get model outputs here */
+      %<varsbuf>\
+    %endif
+    %endif
+    
+    OverrunFlag--;
+    
+    /* Disable interrupts here */
+    /* Restore FPU context here (if necessary) */
+    /* Enable interrupts here */
+  }
+
+  void FaultRoutine(void);
+  void ConfigWDT(void);
+  void ConfigClocks(void);
+  void ConfigLEDs(void);
+  void ConfigTimerA2(void);
+
+  %assign fcnReturns = "int_T"
+  %assign fcnName = "main"
+  %assign fcnParams = "int_T argc, const char_T *argv[]"
+  %assign fcnCategory = "main"
+  %createrecord fcnRec {Name fcnName; Returns fcnReturns; Params fcnParams; ...
+    Abstract ""; Category fcnCategory; GeneratedBy "bareboard_srmain.tlc"; ...
+    Type "Main"}
+  %<SLibDumpFunctionBanner(fcnRec)>
+  %undef fcnRec
+  %<fcnReturns> %<fcnName>(%<fcnParams>)
+  {
+    /* Initialize model */
+    %<LibCallModelInitialize()>\
+    
+    ConfigWDT();
+    ConfigClocks();
+    ConfigLEDs();
+    ConfigTimerA2();
+    _BIS_SR(GIE);
+
+	for(;;) {
+	} 
+
+    %<LibCallModelTerminate()>\
+    return 0;
+  }
+
+  void ConfigWDT(void)
+  {
+    WDTCTL = WDTPW + WDTHOLD; // Stop watchdog timer
+  }
+
+  void ConfigClocks(void)
+  {
+    if (CALBC1_1MHZ ==0xFF || CALDCO_1MHZ == 0xFF)
+    FaultRoutine(); // If calibration data is erased
+                    // run FaultRoutine()
+    BCSCTL1 = CALBC1_1MHZ; // Set range
+    DCOCTL = CALDCO_1MHZ; // Set DCO step + modulation
+    BCSCTL3 |= LFXT1S_2; // LFXT1 = VLO
+    IFG1 &= ~OFIFG; // Clear OSCFault flag
+    BCSCTL2 |= SELM_0 + DIVM_3 + DIVS_3; // MCLK = DCO/8, SMCLK = DCO/8
+  }
+
+  void FaultRoutine(void)
+  {
+    P1OUT = BIT0; // P1.0 on (red LED)
+    while(1); // TRAP
+  }
+
+  void ConfigLEDs(void)
+  {
+    P1DIR = BIT6 + BIT0; // P1.6 and P1.0 outputs
+    P1OUT = 0; // LEDs off
+  }
+
+  void ConfigTimerA2(void)
+  {
+    CCTL0 = CCIE;
+    CCR0 = 12000;
+    TACTL = TASSEL_1 + MC_2;
+  }
+
+  #pragma vector=TIMER0_A0_VECTOR
+  __interrupt void Timer_A (void)
+  {
+    /* Associate rt_OneStep() with a timer that executes at the base rate of the model */
+    P1OUT |= BIT6; // P1.6 on (green LED)
+    rt_OneStep();
+    P1OUT &= ~BIT6; // green LED off
+    //perhaps it's better to do that before calling step function...
+	//or it will never overrun :)
+    CCR0 +=STEP_SIZE_VLO; // add Step Time to the timer
+ }
+
+  %closefile tmpBuf
+  
+  %<LibSetSourceFileSection(cFile, "Functions", tmpBuf)>
+  
+%endfunction
+
+%<FcnSingleTaskingMain()>
