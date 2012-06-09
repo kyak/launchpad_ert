@@ -1,6 +1,7 @@
 function tmf = launchpad_tmf(varargin)
+% Possibly will separate in future...
 if isunix
-    tmf = 'launchpad_unix.tmf';
+    tmf = 'launchpad.tmf';
 else
-    tmf = 'launchpad_pc.tmf';
+    tmf = 'launchpad.tmf';
 end
