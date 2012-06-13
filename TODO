@@ -1,0 +1,2 @@
+- Think about the best way to separate serial read/write
+- Non-blocking serial read (how to deliver result to the model?...)

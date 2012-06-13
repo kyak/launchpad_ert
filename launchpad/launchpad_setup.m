@@ -3,6 +3,8 @@ function launchpad_setup()
 curpath = pwd;
 tgtpath = curpath(1:end-length('\launchpad'));
 addpath(fullfile(tgtpath, 'launchpad'));
+addpath(fullfile(tgtpath, 'blocks'));
+%TODO Autogenerate derived files in 'blocks'
 savepath;
 if ispref('launchpad')
 	rmpref('launchpad');

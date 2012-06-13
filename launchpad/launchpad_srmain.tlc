@@ -22,8 +22,14 @@
   %openfile tmpBuf
   #include "%<LibGetMdlPubHdrBaseName()>.h"
   #include <msp430.h>
-  //TODO check for Step size (perhaps not here...)
-  #define STEP_SIZE_VLO (%<CompiledModel.FundamentalStepSize>*12000)
+  %if %<CompiledModel.FundamentalStepSize> < 0.000084 || %<CompiledModel.FundamentalStepSize> > 5.46125
+    %warning Model step size must be between 0.000084 and 5.46125 seconds
+    %warning Your step size is %<CompiledModel.FundamentalStepSize> seconds, defaulting to 1 second
+    #define STEP_SIZE_VLO 12000
+  %else
+    %assign SAMPLE_TIME = CAST("Unsigned",%<CompiledModel.FundamentalStepSize>*12000)
+    #define STEP_SIZE_VLO %<SAMPLE_TIME>
+  %endif
   %closefile tmpBuf
  
   %<LibSetSourceFileSection(cFile, "Includes", tmpBuf)>
@@ -123,6 +129,7 @@
     BCSCTL3 |= LFXT1S_2; // LFXT1 = VLO
     IFG1 &= ~OFIFG; // Clear OSCFault flag
     BCSCTL2 |= SELM_0 + DIVM_3 + DIVS_3; // MCLK = DCO/8, SMCLK = DCO/8
+    //BCSCTL2 = 0; //to drive MCLK and SMCLK directly from DCO
   }
 
   void FaultRoutine(void)
@@ -139,21 +146,23 @@
 
   void ConfigTimerA2(void)
   {
+    //TODO think about the best way to call the step function.
+    //so far it is called from ISR driven by ACLK (12 kHz)
+    //and ACLK seems to be not very precise. 
     CCTL0 = CCIE;
     CCR0 = 12000;
-    TACTL = TASSEL_1 + MC_2;
+    TACTL = TASSEL_1 + MC_2; //TASSEL_2 for SMCLK
   }
 
   #pragma vector=TIMER0_A0_VECTOR
   __interrupt void Timer_A (void)
   {
+    CCR0 += STEP_SIZE_VLO; // add Step Time to the timer
     /* Associate rt_OneStep() with a timer that executes at the base rate of the model */
     P1OUT |= BIT6; // P1.6 on (green LED)
     rt_OneStep();
     P1OUT &= ~BIT6; // green LED off
-    //perhaps it's better to do that before calling step function...
-	//or it will never overrun :)
-    CCR0 +=STEP_SIZE_VLO; // add Step Time to the timer
+    //P1OUT ^= BIT6; // toggle green LED
  }
 
   %closefile tmpBuf
