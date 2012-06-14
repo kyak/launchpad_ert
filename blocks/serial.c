@@ -1,21 +1,21 @@
-#ifndef MATLAB_MEX_FILE 
+#ifndef MATLAB_MEX_FILE
 #include <msp430.h>
 #endif
         
 #include "serial.h"
 
+#ifndef MATLAB_MEX_FILE
 /* Receive Data at P1.1 */
 #define RXD		BIT1
 
 /* Transmit Data at P1.2 */
 #define TXD		BIT2
-
+#endif
 
 /* Initialize Serial */
 void serial_init(void)
 {
-#ifndef MATLAB_MEX_FILE 
-
+#ifndef MATLAB_MEX_FILE
 	P1SEL  = RXD + TXD;                       
   	P1SEL2 = RXD + TXD;                       
   	UCA0CTL1 |= UCSSEL_2;                     // SMCLK
