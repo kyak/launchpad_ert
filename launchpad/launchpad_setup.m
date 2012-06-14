@@ -4,7 +4,8 @@ curpath = pwd;
 tgtpath = curpath(1:end-length('\launchpad'));
 addpath(fullfile(tgtpath, 'launchpad'));
 addpath(fullfile(tgtpath, 'blocks'));
-%TODO Autogenerate derived files in 'blocks'
+cd('../blocks');
+lct_genblocks;
 savepath;
 if ispref('launchpad')
 	rmpref('launchpad');
