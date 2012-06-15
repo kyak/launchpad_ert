@@ -4,9 +4,14 @@ Model {
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
-    NumRootOutports	    0
+    NumRootOutports	    1
+    Outport {
+      BusObject		      ""
+      BusOutputAsStruct	      "off"
+      Name		      "Out1"
+    }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.22"
+    ComputedModelVersion    "1.24"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -38,9 +43,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "bas"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jun 14 19:03:55 2012"
-  RTWModifiedTimeStamp	  261601380
-  ModelVersionFormat	  "1.%<AutoIncrement:22>"
+  LastModifiedDate	  "Fri Jun 15 19:38:52 2012"
+  RTWModifiedTimeStamp	  261687916
+  ModelVersionFormat	  "1.%<AutoIncrement:24>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -78,7 +83,6 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "launchpad_R2012a"
-    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -750,10 +754,34 @@ Model {
       OutDataTypeStr	      "Inherit: Logical (see Configuration Parameters: Optimization)"
       SampleTime	      "-1"
     }
+    Block {
+      BlockType		      Outport
+      Port		      "1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: auto"
+      LockScale		      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      SourceOfInitialOutputValue "Dialog"
+      OutputWhenDisabled      "held"
+      InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      S-Function
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+      SFunctionDeploymentMode off
+    }
   }
   System {
     Name		    "launchpad_R2012a"
-    Location		    [409, 285, 989, 545]
+    Location		    [659, 288, 1249, 694]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -767,7 +795,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "10"
+    SIDHighWatermark	    "16"
     Block {
       BlockType		      Reference
       Name		      "Compare\nTo Constant"
@@ -798,15 +826,15 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "LED_control"
-      SID		      "7"
+      Name		      "LED"
+      SID		      "11"
       Ports		      [1]
-      Position		      [295, 70, 445, 100]
+      Position		      [315, 290, 465, 320]
       ZOrder		      27
       ShowName		      off
       AttributesFormatString  "LED: %<SParameter1>"
-      LibraryVersion	      "1.11"
-      SourceBlock	      "launchpad_lib/LED_control"
+      LibraryVersion	      "1.15"
+      SourceBlock	      "launchpad_lib/LED"
       SourceType	      "Legacy Function"
       SFunctionSpec	      "led_set(uint8 p1, uint8 u1)"
       SParameter1	      "Red"
@@ -814,15 +842,15 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "LED_control1"
-      SID		      "10"
+      Name		      "LED1"
+      SID		      "12"
       Ports		      [1]
       Position		      [295, 150, 445, 180]
       ZOrder		      27
       ShowName		      off
       AttributesFormatString  "LED: %<SParameter1>"
-      LibraryVersion	      "1.11"
-      SourceBlock	      "launchpad_lib/LED_control"
+      LibraryVersion	      "1.15"
+      SourceBlock	      "launchpad_lib/LED"
       SourceType	      "Legacy Function"
       SFunctionSpec	      "led_set(uint8 p1, uint8 u1)"
       SParameter1	      "Green"
@@ -839,6 +867,78 @@ Model {
       AllPortsSameDT	      off
       OutDataTypeStr	      "fixdt(0,8)"
     }
+    Block {
+      BlockType		      Reference
+      Name		      "Temperature"
+      SID		      "13"
+      Ports		      [0, 1]
+      Position		      [70, 15, 275, 45]
+      ZOrder		      29
+      ShowName		      off
+      AttributesFormatString  "%<SParameter1>"
+      LibraryVersion	      "1.15"
+      SourceBlock	      "launchpad_lib/Temperature"
+      SourceType	      "Legacy Function"
+      SFunctionSpec	      "uint8 y1 = temperature_read(uint8 p1)"
+      SParameter1	      "Celsius"
+      ShowSpec		      on
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "serialWrite"
+      SID		      "14"
+      Ports		      [1]
+      Position		      [350, 15, 495, 45]
+      ZOrder		      4
+      LibraryVersion	      "1.15"
+      SourceBlock	      "launchpad_lib/serialWrite"
+      SourceType	      "Legacy Function"
+      SFunctionSpec	      "void serial_putc(uint8 u1)"
+      ShowSpec		      on
+    }
+    Block {
+      BlockType		      S-Function
+      Name		      "sfun_button"
+      SID		      "15"
+      Ports		      [0, 1]
+      Position		      [125, 235, 275, 265]
+      ZOrder		      5
+      FunctionName	      "sfun_button"
+      EnableBusSupport	      off
+      MaskType		      "Legacy Function"
+      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
+      " Tool definition:\ndef.SFunctionName = 'sfun_button';\ndef.OutputFcnSpec = 'uint8 y1 = button_get(void)';\ndef.S"
+      "tartFcnSpec = 'void button_init(void)';\ndef.HeaderFiles = {'button.h'};\ndef.SourceFiles = {'button.c'};\ndef.O"
+      "ptions.supportsMultipleExecInstances = true;\n"
+      MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
+      "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
+      MaskPromptString	      "SFunctionSpec|Display function specification"
+      MaskStyleString	      "edit,checkbox"
+      MaskVariables	      "SFunctionSpec=&1;ShowSpec=@2;"
+      MaskTunableValueString  "off,on"
+      MaskCallbackString      "|if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprintf"
+      "('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprint"
+      "f(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
+      MaskEnableString	      "on,on"
+      MaskVisibilityString    "off,on"
+      MaskToolTipString	      "on,on"
+      MaskSelfModifiable      on
+      MaskDisplay	      "fprintf('uint8 y1 = button_get(void)');"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "port"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "uint8 y1 = button_get(void)|on"
+    }
+    Block {
+      BlockType		      Outport
+      Name		      "Out1"
+      SID		      "16"
+      Position		      [355, 243, 385, 257]
+      ZOrder		      -9
+      IconDisplay	      "Port number"
+    }
     Line {
       SrcBlock		      "Counter\nLimited"
       SrcPort		      1
@@ -849,20 +949,34 @@ Model {
       SrcBlock		      "Compare\nTo Constant"
       SrcPort		      1
       Points		      [15, 0]
-      Branch {
-	DstBlock		"LED_control"
-	DstPort			1
-      }
-      Branch {
-	DstBlock		"Logical\nOperator"
-	DstPort			1
-      }
+      DstBlock		      "Logical\nOperator"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "Logical\nOperator"
       SrcPort		      1
-      DstBlock		      "LED_control1"
+      DstBlock		      "LED1"
       DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Temperature"
+      SrcPort		      1
+      DstBlock		      "serialWrite"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "sfun_button"
+      SrcPort		      1
+      Points		      [15, 0]
+      Branch {
+	DstBlock		"Out1"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 55]
+	DstBlock		"LED"
+	DstPort			1
+      }
     }
   }
 }
