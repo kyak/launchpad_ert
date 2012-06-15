@@ -1,2 +1,21 @@
 - Think about the best way to separate serial read/write
 - Non-blocking serial read (how to deliver result to the model?...)
+- New blocks: ADC, DAC, PWM, Push button
+- PIL
+- Other chips than 2553
+- CCSv5 on Linux
+- Easy installation
+- Create a BSW layer to supply signal values to application software
+   Actually, for now all blocks are blocking. We only have rt_OneStep()
+   running on an interrupt. We could make async serial RX/TX and
+   temperature (ADC10) at least, updating in ISR. Then the BSW layer would provide those
+   to the aplication layer as global variables.
+   It also means that such BSW needs to be configurable - because our model
+   might not have all of the supported blocks in it. What is the best way to
+   configure BSW? Auto generate the file during build...?
+- Support for multirate/reference models. This especially makes sense it we don't have BSW.
+  Some models can run at higher speeds to "emulate" BSW...
+- It is possible to sleep when waiting for temperature readings. Then ADC10_ISR will
+  just wake up the program when reading is ready. I guess this 
+  is something in between "stupid blocking mode with __delay" and "ISR + smart BSW" :)
+- Button block is not quite working..
