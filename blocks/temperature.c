@@ -2,8 +2,9 @@
 #include <msp430.h>
 #endif
 
-#ifdef __MSP430__
-// Delay Routine from mspgcc help file
+/* only defined by mspgcc */
+#ifdef MSP430
+/* Delay Routine from mspgcc help file */
 static void __inline__ delay(register unsigned int n)
 {
   __asm__ __volatile__ (
@@ -30,13 +31,13 @@ unsigned char temperature_read(unsigned char unit)
 #ifndef MATLAB_MEX_FILE
     ADC10CTL1 = INCH_10 + ADC10DIV_0; // Temp Sensor ADC10CLK
     ADC10CTL0 = SREF_1 + ADC10SHT_3 + REFON + ADC10ON;
-	#ifdef __MSP430__
+	#ifdef MSP430
 	delay(5);
 	#else
 	_delay_cycles(5);           // Wait for ADC Ref to settle
 	#endif
     ADC10CTL0 |= ENC + ADC10SC; // Sampling & conversion start
-	#ifdef __MSP430__
+	#ifdef MSP430
     delay(100);
 	#else
     _delay_cycles(100);
