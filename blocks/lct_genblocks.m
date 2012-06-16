@@ -56,6 +56,6 @@ legacy_code('generate_for_sim', def);
 % Generate TLC file for Code Generation
 legacy_code('sfcn_tlc_generate', def);
 % Generate according Simulink Block
-legacy_code('slblock_generate', def);
+%legacy_code('slblock_generate', def);
 % Generate rtwmakecfg.m file to automatically set up some build options
 legacy_code('rtwmakecfg_generate', def);
