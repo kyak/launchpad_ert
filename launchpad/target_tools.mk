@@ -1,7 +1,7 @@
 # Target Tool Specification Makefile (target_tools.mk)
 
 # Compiler command and options
-CC = "$(CompilerRoot)\bin\cl430"
+CC = "$(CompilerRoot)/bin/cl430"
 CFLAGS = -vmsp --abi=eabi -g --include_path="$(CCSRoot)/ccs_base/msp430/include" \
          --include_path="$(CompilerRoot)/include" --define=__MSP430G2553__
 
@@ -23,7 +23,7 @@ LDDEBUG = -g
 LDOUTPUTFLAG = --output_file=
 
 # Archiver command and options
-AR      = "$(CompilerRoot)\bin\ar430"
+AR      = "$(CompilerRoot)/bin/ar430"
 ARFLAGS = -r
 
 # Binary file format converter command and options

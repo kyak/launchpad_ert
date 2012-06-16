@@ -110,7 +110,8 @@ else
 endif
 
 #--------------------- Handwritten tools makefile ------------------------------
-ifeq ($(ARCH),$(filter $(ARCH),PCWIN PCWIN64))
+#ifeq ($(ARCH),$(filter $(ARCH),PCWIN PCWIN64))
+ifndef MSPGCC
   -include $(TargetRoot)/target_tools.mk
 else
   -include $(TargetRoot)/target_tools_unix.mk
