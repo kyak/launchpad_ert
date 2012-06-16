@@ -14,8 +14,8 @@ both mspgcc and CCSv5 on Linux.
 Make sure your toolchain is working (build and download some test project, check connection)
 before you proceed!
 
-2) Extract this package somewhere, open MATLAB, cd to the directory containing
-launchpad_setup.m and run this script.
+2) Extract this package somewhere. Make sure you have a working/supported host compiler by running mex -setup in MATLAB.
+Within MATLAB, cd to the directory containing launchpad_setup.m and run this script.
 
 3) You should be good to go.
 
