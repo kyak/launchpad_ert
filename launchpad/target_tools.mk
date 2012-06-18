@@ -14,7 +14,7 @@ CXXFLAGS =
 CXXDEBUG =
 
 # Linker command and options
-LD      = "$(CC)"
+LD      = $(CC)
 LDFLAGS = -vmsp --abi=eabi -g --define=__MSP430G2553__ -z --stack_size=80 \
           -m"$(MODEL).map" --heap_size=80 -i"$(CCSRoot)/ccs_base/msp430/include" \
           -i"$(CompilerRoot)/lib" -i"$(CompilerRoot)/include" --reread_libs \
