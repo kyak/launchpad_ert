@@ -2,7 +2,7 @@
 
 # Compiler command and options
 CC = "$(MSPGCC)"
-CFLAGS = -mmcu=msp430g2553 -g
+CFLAGS = -mmcu=msp430g2553
 
 CFLAGS += $(OPTS)
 CDEBUG = -g

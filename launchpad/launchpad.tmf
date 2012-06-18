@@ -43,6 +43,10 @@ COMPILER_TOOL_CHAIN = default
 # Launchpad specific tokens
 LAUNCHPAD_DOWNLOAD   = |>LAUNCHPAD_DOWNLOAD<|
 
+# To enable debugging:
+# set DEBUG_BUILD = 1
+DEBUG_BUILD          = 1
+
 #---------------------- Tokens expanded by make_rtw ----------------------------
 
 MODEL                   = |>MODEL_NAME<|
