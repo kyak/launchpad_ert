@@ -40,8 +40,6 @@ unsigned char button_get(void)
 
 /* *************************************************************
  * Port Interrupt for Button Press
- * 1. During standby mode: to exit and enter application mode
- * 2. During application mode: to recalibrate temp sensor
  * *********************************************************** */
 #ifndef MATLAB_MEX_FILE
 #pragma vector=PORT1_VECTOR
