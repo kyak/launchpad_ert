@@ -19,7 +19,7 @@ LDFLAGS = -vmsp --abi=eabi -g --define=__MSP430G2553__ -z --stack_size=80 \
           -m"$(MODEL).map" --heap_size=80 -i"$(CCSRoot)/ccs_base/msp430/include" \
           -i"$(CompilerRoot)/lib" -i"$(CompilerRoot)/include" --reread_libs \
           --rom_model "$(CCSRoot)/ccs_base/msp430/include/lnk_msp430g2553.cmd"
-LDDEBUG = -g
+LDDEBUG =
 LDOUTPUTFLAG = --output_file=
 
 # Archiver command and options
