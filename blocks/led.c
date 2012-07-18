@@ -8,8 +8,8 @@
 void led_init(void)
 {
 #ifndef MATLAB_MEX_FILE
-    P1DIR = BIT6 + BIT0;                 // P1.6 and P1.0 outputs
-    P1OUT = 0;                           // LEDs off
+    P1DIR |= BIT6 + BIT0;                 // P1.6 and P1.0 outputs
+    P1OUT &= ~(BIT6 + BIT0);              // LEDs off
 #endif
 }
 
