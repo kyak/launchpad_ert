@@ -3,6 +3,7 @@ function launchpad_setup()
 curpath = pwd;
 tgtpath = curpath(1:end-length('/launchpad'));
 addpath(fullfile(tgtpath, 'launchpad'));
+addpath(fullfile(tgtpath, 'demos'));
 addpath(fullfile(tgtpath, 'blocks'));
 savepath;
 if ispref('launchpad')
@@ -31,6 +32,7 @@ end
 cd('../blocks');
 lct_genblocks;
 cd(curpath);
+sl_refresh_customizations;
 end
 
 function [CCSRoot, CompilerRoot] = ccs_setup_paths()
