@@ -97,17 +97,24 @@
   %<SLibDumpFunctionBanner(fcnRec)>
   %undef fcnRec
   %<fcnReturns> %<fcnName>(%<fcnParams>)
-  {
-    /* Initialize model */
-    %<LibCallModelInitialize()>\
-    
+  {  
     ConfigWDT();
     ConfigClocks();
     //ConfigLEDs();
     ConfigTimerA2();
-    _BIS_SR(GIE);
+    //_BIS_SR(GIE);
+    //__bis_SR_register(LPM3_bits + GIE);          // LPM0 with interrupts enabled
+    //__bic_SR_register_on_exit(LPM3_bits);
+    //__bis_SR_register(CPUOFF + GIE);          // LPM0 with interrupts enabled
+    //__bic_SR_register_on_exit(CPUOFF);        // Return to active mode
+    //__enable_interrupt();                     // Enable interrupts.
+    //__bis_SR_register(CPUOFF + GIE);        // LPM0 with interrupts enabled
+    
+    /* Initialize model */
+    %<LibCallModelInitialize()>\
 
-	for(;;) {
+	while(1) {
+        _bis_SR_register(LPM3_bits + GIE); //Low Power Mode with interrupts
 	} 
 
     %<LibCallModelTerminate()>\
