@@ -114,7 +114,7 @@
     %<LibCallModelInitialize()>\
 
 	while(1) {
-        _bis_SR_register(LPM3_bits + GIE); //Low Power Mode with interrupts
+        _BIS_SR(LPM3_bits + GIE); //Low Power Mode with interrupts
 	} 
 
     %<LibCallModelTerminate()>\
