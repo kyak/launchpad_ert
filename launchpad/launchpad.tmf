@@ -153,6 +153,42 @@ CFLAGS += $(CDEBUG)
 CXXFLAGS += $(CXXDEBUG)
 LDFLAGS += $(LDDEBUG)
 endif
+
+#----------------------------- External mode -----------------------------------
+# Uncomment -DVERBOSE to have information printed to stdout
+# To add a new transport layer, see the comments in
+#   <matlabroot>/toolbox/simulink/simulink/extmode_transports.m
+ifeq ($(EXT_MODE),1)
+  EXT_CC_OPTS = -DEXT_MODE -D$(COMPUTER) #-DVERBOSE
+  EXT_LIB     =
+  EXT_SRC     =
+  LINT_EXT_COMMON_SRC =
+  LINT_EXT_TCPIP_SRC  =
+  ifeq ($(EXTMODE_TRANSPORT),0) #tcpip
+    EXT_SRC = ext_svr.c updown.c ext_work.c rtiostream_interface.c rtiostream_tcpip.c
+    LINT_EXT_COMMON_SRC = ext_svr.c updown.c ext_work.c
+    LINT_EXT_TCPIP_SRC  = rtiostream_interface.c rtiostream_tcpip.c
+  endif
+  ifeq ($(EXTMODE_TRANSPORT),1) #serial_win32
+    err:
+	@echo
+	@echo "### ERROR: External mode serial transport only available on win32"
+	@echo
+  endif
+  ifeq ($(TMW_EXTMODE_TESTING),1)
+    EXT_SRC     += ext_test.c
+    EXT_CC_OPTS += -DTMW_EXTMODE_TESTING
+  endif
+  ifeq ($(EXTMODE_STATIC),1)
+    EXT_SRC             += mem_mgr.c
+    LINT_EXT_COMMON_SRC += mem_mgr.c
+    EXT_CC_OPTS         += -DEXTMODE_STATIC -DEXTMODE_STATIC_SIZE=$(EXTMODE_STATIC_SIZE)
+  endif
+  ifeq ($(COMPUTER),SOL64)
+    EXT_LIB = -lsocket -lnsl
+  endif
+endif
+
 #-------------------------------- Target application --------------------------------------
 # Define the target file
 
@@ -294,6 +330,12 @@ endif
 
 %$(OBJ_EXT): %.c
 	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG)$@ 
+
+%$(OBJ_EXT): $(MATLAB_ROOT)/rtw/c/src/rtiostream/rtiostreamserial/%.c
+	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG)$@
+
+%$(OBJ_EXT): $(TargetRoot)/%.c
+	$(CC) -c $(CFLAGS) $< $(CCOUTPUTFLAG)$@
 
 |>START_EXPAND_RULES<|%$(OBJ_EXT) : $(subst \,/,|>EXPAND_DIR_NAME<|)/%.cpp
 	$(CXX) -c $(CXXFLAGS) $< $(CCOUTPUTFLAG)$@ 

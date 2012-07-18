@@ -19,7 +19,7 @@ LDDEBUG = -g
 LDOUTPUTFLAG = -o
 
 # Archiver command and options
-AR      = "$(CC)"
+AR      = $(subst -gcc,-ar,$(CC))
 ARFLAGS = -r
 
 # Binary file format converter command and options
@@ -34,6 +34,3 @@ PROGRAM_FILE_EXT = .out
 
 # Specify extension for final product at end of build
 EXE_FILE_EXT     = $(PROGRAM_FILE_EXT)
-
-
-
