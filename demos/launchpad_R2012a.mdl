@@ -11,7 +11,7 @@ Model {
       Name		      "counter"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.67"
+    ComputedModelVersion    "1.68"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -41,11 +41,11 @@ Model {
   Creator		  "bas"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "peselnikmg"
+  LastModifiedBy	  "bas"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 18 16:09:42 2012"
-  RTWModifiedTimeStamp	  264521535
-  ModelVersionFormat	  "1.%<AutoIncrement:67>"
+  LastModifiedDate	  "Wed Jul 18 20:08:25 2012"
+  RTWModifiedTimeStamp	  264542903
+  ModelVersionFormat	  "1.%<AutoIncrement:68>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -83,7 +83,6 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "launchpad_R2012a"
-    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -786,13 +785,6 @@ Model {
       InitialOutput	      "[]"
     }
     Block {
-      BlockType		      S-Function
-      FunctionName	      "system"
-      SFunctionModules	      "''"
-      PortCounts	      "[]"
-      SFunctionDeploymentMode off
-    }
-    Block {
       BlockType		      Sum
       IconShape		      "rectangular"
       Inputs		      "++"
@@ -835,7 +827,7 @@ Model {
   }
   System {
     Name		    "launchpad_R2012a"
-    Location		    [294, 243, 1524, 873]
+    Location		    [0, 28, 1230, 658]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -849,7 +841,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "44"
+    SIDHighWatermark	    "45"
     Block {
       BlockType		      Sum
       Name		      "Add"
@@ -860,6 +852,19 @@ Model {
       InputSameDT	      off
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Button"
+      SID		      "45"
+      Ports		      [0, 1]
+      Position		      [25, 65, 175, 95]
+      ZOrder		      5
+      LibraryVersion	      "1.3"
+      SourceBlock	      "launchpad_lib/Button"
+      SourceType	      "Legacy Function"
+      SFunctionSpec	      "uint8 y1 = button_get(void)"
+      ShowSpec		      on
     }
     Block {
       BlockType		      Constant
@@ -903,7 +908,7 @@ Model {
       ZOrder		      27
       ShowName		      off
       AttributesFormatString  "LED: %<SParameter1>"
-      LibraryVersion	      "1.15"
+      LibraryVersion	      "1.3"
       SourceBlock	      "launchpad_lib/LED"
       SourceType	      "Legacy Function"
       SFunctionSpec	      "led_set(uint8 p1, uint8 u1)"
@@ -919,7 +924,7 @@ Model {
       ZOrder		      27
       ShowName		      off
       AttributesFormatString  "LED: %<SParameter1>"
-      LibraryVersion	      "1.15"
+      LibraryVersion	      "1.3"
       SourceBlock	      "launchpad_lib/LED"
       SourceType	      "Legacy Function"
       SFunctionSpec	      "led_set(uint8 p1, uint8 u1)"
@@ -990,41 +995,6 @@ Model {
       BlockMirror	      on
       InputProcessing	      "Elements as channels (sample based)"
       SampleTime	      "-1"
-    }
-    Block {
-      BlockType		      S-Function
-      Name		      "sfun_button"
-      SID		      "23"
-      Ports		      [0, 1]
-      Position		      [25, 65, 175, 95]
-      ZOrder		      5
-      FunctionName	      "sfun_button"
-      EnableBusSupport	      off
-      MaskType		      "Legacy Function"
-      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
-      " Tool definition:\ndef.SFunctionName = 'sfun_button';\ndef.OutputFcnSpec = 'uint8 y1 = button_get(void)';\ndef.S"
-      "tartFcnSpec = 'void button_init(void)';\ndef.HeaderFiles = {'button.h'};\ndef.SourceFiles = {'button.c'};\ndef.O"
-      "ptions.supportsMultipleExecInstances = true;\n"
-      MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
-      "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
-      MaskPromptString	      "SFunctionSpec|Display function specification"
-      MaskStyleString	      "edit,checkbox"
-      MaskVariables	      "SFunctionSpec=&1;ShowSpec=@2;"
-      MaskTunableValueString  "off,on"
-      MaskCallbackString      "|if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprintf"
-      "('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprint"
-      "f(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
-      MaskEnableString	      "on,on"
-      MaskVisibilityString    "off,on"
-      MaskToolTipString	      "on,on"
-      MaskSelfModifiable      on
-      MaskDisplay	      "fprintf('uint8 y1 = button_get(void)');"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "port"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "normalized"
-      MaskValueString	      "uint8 y1 = button_get(void)|on"
     }
     Block {
       BlockType		      Outport
@@ -1105,7 +1075,7 @@ Model {
       DstPort		      2
     }
     Line {
-      SrcBlock		      "sfun_button"
+      SrcBlock		      "Button"
       SrcPort		      1
       DstBlock		      "Detect Rise\nPositive"
       DstPort		      1

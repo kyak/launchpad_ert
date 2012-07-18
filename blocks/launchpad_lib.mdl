@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "bas"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 18 19:55:48 2012"
-  RTWModifiedTimeStamp	  264542119
-  ModelVersionFormat	  "1.%<AutoIncrement:1>"
+  LastModifiedDate	  "Wed Jul 18 20:07:21 2012"
+  RTWModifiedTimeStamp	  264542839
+  ModelVersionFormat	  "1.%<AutoIncrement:3>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -620,7 +620,7 @@ Library {
   }
   System {
     Name		    "launchpad_lib"
-    Location		    [81, 227, 672, 569]
+    Location		    [320, 224, 911, 566]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -634,46 +634,10 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "5"
+    SIDHighWatermark	    "9"
     Block {
       BlockType		      S-Function
-      Name		      "sfun_LED"
-      SID		      "1"
-      Ports		      [1]
-      Position		      [55, 135, 205, 165]
-      ZOrder		      3
-      FunctionName	      "sfun_LED"
-      Parameters	      "SParameter1"
-      EnableBusSupport	      off
-      MaskType		      "Legacy Function"
-      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
-      " Tool definition:\ndef.SFunctionName = 'sfun_LED';\ndef.OutputFcnSpec = 'led_set(uint8 p1, uint8 u1)';\ndef.Star"
-      "tFcnSpec = 'void led_init(void)';\ndef.HeaderFiles = {'led.h'};\ndef.SourceFiles = {'led.c'};\ndef.Options.suppo"
-      "rtsMultipleExecInstances = true;\n"
-      MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
-      "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
-      MaskPromptString	      "SFunctionSpec|P1:|Display function specification"
-      MaskStyleString	      "edit,edit,checkbox"
-      MaskVariables	      "SFunctionSpec=&1;SParameter1=@2;ShowSpec=@3;"
-      MaskTunableValueString  "off,on,on"
-      MaskCallbackString      "||if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprint"
-      "f('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprin"
-      "tf(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
-      MaskEnableString	      "on,on,on"
-      MaskVisibilityString    "off,on,on"
-      MaskToolTipString	      "on,on,on"
-      MaskSelfModifiable      on
-      MaskDisplay	      "fprintf('%s','led_set(uint8 p1, uint8 u1)');"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "port"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "normalized"
-      MaskValueString	      "led_set(uint8 p1, uint8 u1)|ones([1 1 ])|on"
-    }
-    Block {
-      BlockType		      S-Function
-      Name		      "sfun_button"
+      Name		      "Button"
       SID		      "2"
       Ports		      [0, 1]
       Position		      [55, 255, 205, 285]
@@ -708,7 +672,83 @@ Library {
     }
     Block {
       BlockType		      S-Function
-      Name		      "sfun_serialRead"
+      Name		      "LED"
+      SID		      "8"
+      Ports		      [1]
+      Position		      [55, 130, 205, 160]
+      ZOrder		      27
+      ShowName		      off
+      AttributesFormatString  "LED: %<SParameter1>"
+      FunctionName	      "sfun_LED"
+      Parameters	      "SParameter1"
+      EnableBusSupport	      off
+      MaskType		      "Legacy Function"
+      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
+      " Tool definition:\ndef.SFunctionName = 'LED_control';\ndef.OutputFcnSpec = 'led_set(uint8 p1, uint8 u1)';\ndef.S"
+      "tartFcnSpec = 'void led_init(void)';\ndef.HeaderFiles = {'led.h'};\ndef.SourceFiles = {'led.c'};\ndef.Options.su"
+      "pportsMultipleExecInstances = true;\n"
+      MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
+      "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
+      MaskPromptString	      "SFunctionSpec|Choose LED:|Display function specification"
+      MaskStyleString	      "edit,popup(Red|Green),checkbox"
+      MaskVariables	      "SFunctionSpec=&1;SParameter1=@2;ShowSpec=@3;"
+      MaskTunableValueString  "off,on,on"
+      MaskCallbackString      "||if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprint"
+      "f('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprin"
+      "tf(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
+      MaskEnableString	      "on,on,on"
+      MaskVisibilityString    "off,on,on"
+      MaskToolTipString	      "on,on,on"
+      MaskSelfModifiable      on
+      MaskDisplay	      "fprintf('led_set(uint8 p1, uint8 u1)');"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "port"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "led_set(uint8 p1, uint8 u1)|Red|on"
+    }
+    Block {
+      BlockType		      S-Function
+      Name		      "Temperature"
+      SID		      "9"
+      Ports		      [0, 1]
+      Position		      [45, 195, 250, 225]
+      ZOrder		      29
+      ShowName		      off
+      AttributesFormatString  "%<SParameter1>"
+      FunctionName	      "sfun_temperature"
+      Parameters	      "SParameter1"
+      EnableBusSupport	      off
+      MaskType		      "Legacy Function"
+      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
+      " Tool definition:\ndef.SFunctionName = 'sfun_temperature';\ndef.OutputFcnSpec = 'uint8 y1 = temperature_read(uin"
+      "t8 p1)';\ndef.StartFcnSpec = 'void temperature_init(void)';\ndef.HeaderFiles = {'temperature.h'};\ndef.SourceFil"
+      "es = {'temperature.c'};\ndef.Options.supportsMultipleExecInstances = true;\n"
+      MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
+      "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
+      MaskPromptString	      "SFunctionSpec|Units:|Display function specification"
+      MaskStyleString	      "edit,popup(Celsius|Fahrenheit),checkbox"
+      MaskVariables	      "SFunctionSpec=&1;SParameter1=@2;ShowSpec=@3;"
+      MaskTunableValueString  "off,on,on"
+      MaskCallbackString      "||if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprint"
+      "f('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprin"
+      "tf(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
+      MaskEnableString	      "on,on,on"
+      MaskVisibilityString    "off,on,on"
+      MaskToolTipString	      "on,on,on"
+      MaskSelfModifiable      on
+      MaskDisplay	      "fprintf('uint8 y1 = temperature_read(uint8 p1)');"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "port"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "normalized"
+      MaskValueString	      "uint8 y1 = temperature_read(uint8 p1)|Celsius|on"
+    }
+    Block {
+      BlockType		      S-Function
+      Name		      "serialRead"
       SID		      "3"
       Ports		      [0, 1]
       Position		      [55, 75, 185, 105]
@@ -743,7 +783,7 @@ Library {
     }
     Block {
       BlockType		      S-Function
-      Name		      "sfun_serialWrite"
+      Name		      "serialWrite"
       SID		      "4"
       Ports		      [1]
       Position		      [55, 15, 200, 45]
@@ -775,42 +815,6 @@ Library {
       MaskPortRotate	      "default"
       MaskIconUnits	      "normalized"
       MaskValueString	      "void serial_putc(uint8 u1)|on"
-    }
-    Block {
-      BlockType		      S-Function
-      Name		      "sfun_temperature"
-      SID		      "5"
-      Ports		      [0, 1]
-      Position		      [55, 195, 260, 225]
-      ZOrder		      4
-      FunctionName	      "sfun_temperature"
-      Parameters	      "SParameter1"
-      EnableBusSupport	      off
-      MaskType		      "Legacy Function"
-      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
-      " Tool definition:\ndef.SFunctionName = 'sfun_temperature';\ndef.OutputFcnSpec = 'uint8 y1 = temperature_read(uin"
-      "t8 p1)';\ndef.StartFcnSpec = 'void temperature_init(void)';\ndef.HeaderFiles = {'temperature.h'};\ndef.SourceFil"
-      "es = {'temperature.c'};\ndef.Options.supportsMultipleExecInstances = true;\n"
-      MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
-      "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
-      MaskPromptString	      "SFunctionSpec|P1:|Display function specification"
-      MaskStyleString	      "edit,edit,checkbox"
-      MaskVariables	      "SFunctionSpec=&1;SParameter1=@2;ShowSpec=@3;"
-      MaskTunableValueString  "off,on,on"
-      MaskCallbackString      "||if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprint"
-      "f('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprin"
-      "tf(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
-      MaskEnableString	      "on,on,on"
-      MaskVisibilityString    "off,on,on"
-      MaskToolTipString	      "on,on,on"
-      MaskSelfModifiable      on
-      MaskDisplay	      "fprintf('%s','uint8 y1 = temperature_read(uint8 p1)');"
-      MaskIconFrame	      on
-      MaskIconOpaque	      on
-      MaskIconRotate	      "port"
-      MaskPortRotate	      "default"
-      MaskIconUnits	      "normalized"
-      MaskValueString	      "uint8 y1 = temperature_read(uint8 p1)|ones([1 1 ])|on"
     }
   }
 }
