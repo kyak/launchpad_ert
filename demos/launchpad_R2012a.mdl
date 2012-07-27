@@ -11,7 +11,7 @@ Model {
       Name		      "counter"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.68"
+    ComputedModelVersion    "1.69"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -41,11 +41,11 @@ Model {
   Creator		  "bas"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "bas"
+  LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 18 20:08:25 2012"
-  RTWModifiedTimeStamp	  264542903
-  ModelVersionFormat	  "1.%<AutoIncrement:68>"
+  LastModifiedDate	  "Tue Jul 24 15:58:09 2012"
+  RTWModifiedTimeStamp	  265046285
+  ModelVersionFormat	  "1.%<AutoIncrement:69>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -83,6 +83,7 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "launchpad_R2012a"
+    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -827,7 +828,7 @@ Model {
   }
   System {
     Name		    "launchpad_R2012a"
-    Location		    [0, 28, 1230, 658]
+    Location		    [276, 159, 1506, 789]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -850,7 +851,7 @@ Model {
       Position		      [510, 292, 540, 323]
       ZOrder		      -2
       InputSameDT	      off
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "uint16"
       SaturateOnIntegerOverflow	off
     }
     Block {

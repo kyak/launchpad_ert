@@ -13,7 +13,7 @@ addpref('launchpad','TargetRoot',curpath);
 if isunix
 	toolchain = questdlg('Are you using mspgcc or CCSv5 toolchain?',...
 		'UNIX Toolchain Selection','mspgcc','CCSv5','mspgcc');
-	if (strcmp(toolchain,'mspgcc'))
+    if (strcmp(toolchain,'mspgcc'))
 		%TODO Check return status
 		[~,MSPGCC] = system('which msp430-gcc');
 		addpref('launchpad','MSPGCC',MSPGCC);
@@ -23,11 +23,13 @@ if isunix
 		addpref('launchpad','CompilerRoot',CompilerRoot);
 	else
 		error('Wrong choice, exiting...');
-	end
+    end
+    %TODO add COM port
 else
 	[CCSRoot, CompilerRoot] = ccs_setup_paths;
 	addpref('launchpad','CCSRoot',CCSRoot);
 	addpref('launchpad','CompilerRoot',CompilerRoot);
+    addpref('launchpad','COMPort',setup_com_port);
 end
 cd('../blocks');
 lct_genblocks;
@@ -39,4 +41,45 @@ function [CCSRoot, CompilerRoot] = ccs_setup_paths()
 	% TODO: make it foolproof
 	CCSRoot = uigetdir(matlabroot,'CCS root directory: (the one with ccs_base, tools ...)');
 	CompilerRoot = uigetdir(CCSRoot,'CCS Compiler root directory: (tools/compiler/msp430_X.X.X)');
+end
+
+function COMPort = setup_com_port()
+
+[ports, names] = find_com_ports;
+
+% Choose COM port
+[selection,ok] = listdlg('PromptString','Choose TI LaunchPad COM port:',...
+    'SelectionMode','single',...
+    'ListSize',[260 160],...
+    'ListString',names);
+if (ok == 1 && selection > 2) %have actually chosen COM port
+    COMPort = ports{selection-2}; % -2 for padding with names array
+elseif (ok == 1 && selection > 1) %chosen to refresh COM Ports
+    COMPort = setup_com_port();
+else %chosen to enter manually or canceled
+    COMPort = cell2mat(inputdlg('Enter COM port manually: (ex. COM3 or /dev/ttyACM0)','COM port',1));
+end
+end
+
+function [ports, names] = find_com_ports()
+%Find COM ports
+names_string = {'Enter COM port manually...','Refresh COM ports list...'};
+if isunix
+    %TODO
+else
+    wmiCmd = ['wmic /namespace:\\root\cimv2 '...
+              'path Win32_SerialPort get DeviceID,Name'];
+    %TODO catch error (wmic is not on WinXP Home for instance).
+    [~,wmiCmdOutput]=system(wmiCmd);
+    % in a single regexp call with tokens
+    [names, ports] = regexp(wmiCmdOutput,'(?<=COM\d+\s*)\S.*?\((COM\d+)\)','match','tokens');
+    % same in two regexp calls..
+    %ports = regexp(wmiCmdOutput,'COM\d+(?!\))','match');
+    %names = regexp(wmiCmdOutput,'(?<=COM\d+\s*)\S.*?\(COM\d+\)','match');
+    %regCmd=['reg query '...
+    %        'HKEY_LOCAL_MACHINE\HARDWARE\DEVICEMAP\SERIALCOMM'];
+    %[~,regCmdOutput]=system(regCmd);
+    %ports = regexp(regCmdOutput,'COM\d+','match');
+end
+names = [names_string,names];
 end
