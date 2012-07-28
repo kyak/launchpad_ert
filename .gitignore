@@ -1,2 +1,4 @@
 blocks/sfun_*
 blocks/rtwmakecfg.m
+*.o
+*.so*
