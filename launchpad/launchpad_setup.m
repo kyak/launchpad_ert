@@ -10,6 +10,7 @@ if ispref('launchpad')
 	rmpref('launchpad');
 end
 addpref('launchpad','TargetRoot',curpath);
+addpref('launchpad','COMPort',setup_com_port);
 if isunix
 	toolchain = questdlg('Are you using mspgcc or CCSv5 toolchain?',...
 		'UNIX Toolchain Selection','mspgcc','CCSv5','mspgcc');
@@ -24,12 +25,10 @@ if isunix
 	else
 		error('Wrong choice, exiting...');
     end
-    %TODO add COM port
 else
 	[CCSRoot, CompilerRoot] = ccs_setup_paths;
 	addpref('launchpad','CCSRoot',CCSRoot);
 	addpref('launchpad','CompilerRoot',CompilerRoot);
-    addpref('launchpad','COMPort',setup_com_port);
 end
 cd('../blocks');
 lct_genblocks;
@@ -57,7 +56,7 @@ if (ok == 1 && selection > 2) %have actually chosen COM port
 elseif (ok == 1 && selection > 1) %chosen to refresh COM Ports
     COMPort = setup_com_port();
 else %chosen to enter manually or canceled
-    COMPort = cell2mat(inputdlg('Enter COM port manually: (ex. COM3 or /dev/ttyACM0)','COM port',1));
+    COMPort = cell2mat(inputdlg('Enter COM port manually: (ex. COM3 or ttyACM0)','COM port',1));
 end
 end
 
@@ -66,6 +65,17 @@ function [ports, names] = find_com_ports()
 names_string = {'Enter COM port manually...','Refresh COM ports list...'};
 if isunix
     %TODO
+	%check /dev/serial
+	unixCmd = 'ls -l /dev/serial/by-id/*';
+	[unixCmdStatus,unixCmdOutput]=system(unixCmd);
+	if (unixCmdStatus > 0)
+		ports = {};
+		names = {};
+	else
+		%names = regexp(unixCmdOutput,'(?<=/dev/serial/by-id/)\S+','match');
+		%ports = regexp(unixCmdOutput,'(?<=->.*/)tty\w+','match');
+		[names, ports] = regexp(unixCmdOutput,'(?<=/dev/serial/by-id/)\S+.*?((?<=->.*/)tty\w+)','match','tokens');
+	end
 else
     wmiCmd = ['wmic /namespace:\\root\cimv2 '...
               'path Win32_SerialPort get DeviceID,Name'];
