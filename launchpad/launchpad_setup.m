@@ -17,7 +17,7 @@ if isunix
     if (strcmp(toolchain,'mspgcc'))
 		%TODO Check return status
 		[~,MSPGCC] = system('which msp430-gcc');
-		addpref('launchpad','MSPGCC',MSPGCC);
+		addpref('launchpad','MSPGCC',deblank(MSPGCC));
 	elseif (strcmp(toolchain,'CCSv5'))
 		[CCSRoot, CompilerRoot] = ccs_setup_paths;
 		addpref('launchpad','CCSRoot',CCSRoot);
