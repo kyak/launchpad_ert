@@ -29,8 +29,8 @@ classdef ConnectivityConfig < rtw.connectivity.Config
             sharedLibExt=system_dependent('GetSharedLibExt'); 
 
             % Evaluate name of the rtIOStream shared library
-            if ispc
-                prefix = 'libmw';
+            if isunix
+                prefix = [getpref('launchpad','TargetRoot'),'/rtiostreamserial_host/lib'];
             else
                 prefix='libmw';
             end

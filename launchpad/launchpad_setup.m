@@ -25,6 +25,9 @@ if isunix
 	else
 		error('Wrong choice, exiting...');
     end
+	cd('rtiostreamserial_host');
+	system('make');
+	cd(curpath);
 else
 	[CCSRoot, CompilerRoot] = ccs_setup_paths;
 	addpref('launchpad','CCSRoot',CCSRoot);
