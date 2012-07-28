@@ -52,7 +52,7 @@ function COMPort = setup_com_port()
     'ListSize',[260 160],...
     'ListString',names);
 if (ok == 1 && selection > 2) %have actually chosen COM port
-    COMPort = ports{selection-2}; % -2 for padding with names array
+    COMPort = char(ports{selection-2}); % -2 for padding with names array
 elseif (ok == 1 && selection > 1) %chosen to refresh COM Ports
     COMPort = setup_com_port();
 else %chosen to enter manually or canceled
@@ -74,7 +74,7 @@ if isunix
 	else
 		%names = regexp(unixCmdOutput,'(?<=/dev/serial/by-id/)\S+','match');
 		%ports = regexp(unixCmdOutput,'(?<=->.*/)tty\w+','match');
-		[names, ports] = regexp(unixCmdOutput,'(?<=/dev/serial/by-id/)\S+.*?((?<=->.*/)tty\w+)','match','tokens');
+		[names, ports] = regexp(unixCmdOutput,'(?<=/dev/serial/by-id/)\S.*?((?<=->.*/)tty\w+)','match','tokens');
 	end
 else
     wmiCmd = ['wmic /namespace:\\root\cimv2 '...
