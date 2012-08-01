@@ -23,7 +23,7 @@ if isunix
 		addpref('launchpad','CCSRoot',CCSRoot);
 		addpref('launchpad','CompilerRoot',CompilerRoot);
 	else
-		error('Wrong choice, exiting...');
+		error('Your setup is not complete!');
     end
 	cd('rtiostreamserial_host');
 	system('make');
@@ -37,6 +37,7 @@ cd('../blocks');
 lct_genblocks;
 cd(curpath);
 sl_refresh_customizations;
+disp('TI LaunchPad Target setup is complete!');
 end
 
 function [CCSRoot, CompilerRoot] = ccs_setup_paths()
