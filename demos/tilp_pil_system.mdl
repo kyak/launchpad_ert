@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.111"
+    ComputedModelVersion    "1.127"
     NumModelReferences	    1
     ModelReference {
       ModelRefBlockPath	      "tilp_pil_system/Subsystem|tilp_pil"
@@ -41,9 +41,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jul 26 12:09:13 2012"
-  RTWModifiedTimeStamp	  265203946
-  ModelVersionFormat	  "1.%<AutoIncrement:111>"
+  LastModifiedDate	  "Wed Aug 01 13:56:05 2012"
+  RTWModifiedTimeStamp	  265646509
+  ModelVersionFormat	  "1.%<AutoIncrement:127>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -81,7 +81,6 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "tilp_pil_system"
-    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -702,8 +701,8 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=1 -aIgnoreTestpoints=0 "
-      CurrentDlgPage	      "Optimization/Signals and Parameters"
-      ConfigPrmDlgPosition     [ 309, 53, 1239, 822 ] 
+      CurrentDlgPage	      "Hardware Implementation"
+      ConfigPrmDlgPosition     [ 325, 79, 1271, 886 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -758,6 +757,17 @@ Model {
       PreserveConstantTs      off
     }
     Block {
+      BlockType		      DataTypeConversion
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via back propagation"
+      LockScale		      off
+      ConvertRealWorld	      "Real World Value (RWV)"
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Display
       Format		      "short"
       Decimation	      "10"
@@ -792,7 +802,7 @@ Model {
   }
   System {
     Name		    "tilp_pil_system"
-    Location		    [454, 365, 1229, 640]
+    Location		    [513, 657, 1288, 932]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -806,22 +816,31 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "53"
+    SIDHighWatermark	    "54"
     Block {
       BlockType		      Constant
       Name		      "Constant"
       SID		      "45"
-      Position		      [25, 71, 70, 99]
+      Position		      [15, 71, 85, 99]
       ZOrder		      -5
-      Value		      "23"
-      OutDataTypeStr	      "uint8"
+      Value		      "[256 257]"
+      OutDataTypeStr	      "double"
+    }
+    Block {
+      BlockType		      DataTypeConversion
+      Name		      "Data Type Conversion"
+      SID		      "54"
+      Position		      [110, 68, 185, 102]
+      ZOrder		      -5
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Display
       Name		      "Display"
       SID		      "53"
       Ports		      [1]
-      Position		      [340, 124, 430, 186]
+      Position		      [395, 124, 485, 186]
       ZOrder		      -1
       Decimation	      "1"
       Lockdown		      off
@@ -831,7 +850,7 @@ Model {
       Name		      "Scope"
       SID		      "46"
       Ports		      [1]
-      Position		      [345, 69, 375, 101]
+      Position		      [400, 69, 430, 101]
       ZOrder		      -3
       Floating		      off
       Location		      [1347, 278, 1728, 650]
@@ -853,8 +872,8 @@ Model {
       }
       ShowLegends	      off
       TimeRange		      "10"
-      YMin		      "-127"
-      YMax		      "128"
+      YMin		      "0"
+      YMax		      "275"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }
@@ -863,11 +882,11 @@ Model {
       Name		      "Subsystem"
       SID		      "51"
       Ports		      [1, 1]
-      Position		      [185, 48, 270, 122]
+      Position		      [240, 48, 325, 122]
       ZOrder		      1
       ModelNameDialog	      "tilp_pil"
       SimulationMode	      "Processor-in-the-loop (PIL)"
-      ModelReferenceVersion   "1.93"
+      ModelReferenceVersion   "1.105"
       List {
 	ListType		InputPortNames
 	port0			"In1"
@@ -899,6 +918,12 @@ Model {
     }
     Line {
       SrcBlock		      "Constant"
+      SrcPort		      1
+      DstBlock		      "Data Type Conversion"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Data Type Conversion"
       SrcPort		      1
       DstBlock		      "Subsystem"
       DstPort		      1

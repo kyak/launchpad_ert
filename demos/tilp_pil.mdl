@@ -15,7 +15,7 @@ Model {
       Name		      "Out1"
     }
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.93"
+    ComputedModelVersion    "1.105"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -47,9 +47,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jul 26 12:09:12 2012"
-  RTWModifiedTimeStamp	  265205350
-  ModelVersionFormat	  "1.%<AutoIncrement:93>"
+  LastModifiedDate	  "Wed Aug 01 13:54:53 2012"
+  RTWModifiedTimeStamp	  265730089
+  ModelVersionFormat	  "1.%<AutoIncrement:105>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -813,8 +813,8 @@ Model {
       SID		      "1"
       Position		      [25, 33, 55, 47]
       IconDisplay	      "Port number"
-      OutDataTypeStr	      "uint8"
-      PortDimensions	      "1"
+      OutDataTypeStr	      "uint32"
+      PortDimensions	      "2"
       SampleTime	      "[0.10000000000000001,0]"
       SignalType	      "real"
       SamplingMode	      "Sample based"
@@ -834,7 +834,6 @@ Model {
       SID		      "3"
       Position		      [305, 33, 335, 47]
       IconDisplay	      "Port number"
-      PortDimensions	      "1"
       SampleTime	      "[0.10000000000000001,0]"
       SignalType	      "real"
       SamplingMode	      "Sample based"
