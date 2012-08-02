@@ -26,7 +26,7 @@ void temperature_init(void)
 
 /* Read the temperature to the application software */
 /* unit: 1/2 (Celsius/Fahrenheit) */
-unsigned char temperature_read(unsigned char unit)
+signed char temperature_read(unsigned char unit)
 {
 #ifndef MATLAB_MEX_FILE
     ADC10CTL1 = INCH_10 + ADC10DIV_0; // Temp Sensor ADC10CLK
@@ -47,9 +47,9 @@ unsigned char temperature_read(unsigned char unit)
     // Read conversion value, convert and return
     if (unit == 2)
         // oF = ((A10/1024)*1500mV)-923mV)*1/1.97mV = A10*761/1024 - 468
-        return (unsigned char)( (((long)ADC10MEM - 630) * 761) / 1024 );
+        return (signed char)( (((long)ADC10MEM - 630) * 761) / 1024 );
     else
         // oC = ((A10/1024)*1500mV)-986mV)*1/3.55mV = A10*423/1024 - 278
-        return (unsigned char)( (((long)ADC10MEM - 673) * 423) / 1024 );
+        return (signed char)( (((long)ADC10MEM - 673) * 423) / 1024 );
 #endif
 }

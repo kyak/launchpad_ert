@@ -14,11 +14,11 @@ Library {
   Creator		  "bas"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "bas"
+  LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 18 20:07:21 2012"
-  RTWModifiedTimeStamp	  264542839
-  ModelVersionFormat	  "1.%<AutoIncrement:3>"
+  LastModifiedDate	  "Thu Aug 02 10:48:01 2012"
+  RTWModifiedTimeStamp	  265805277
+  ModelVersionFormat	  "1.%<AutoIncrement:4>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -722,9 +722,9 @@ Library {
       EnableBusSupport	      off
       MaskType		      "Legacy Function"
       MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
-      " Tool definition:\ndef.SFunctionName = 'sfun_temperature';\ndef.OutputFcnSpec = 'uint8 y1 = temperature_read(uin"
-      "t8 p1)';\ndef.StartFcnSpec = 'void temperature_init(void)';\ndef.HeaderFiles = {'temperature.h'};\ndef.SourceFil"
-      "es = {'temperature.c'};\ndef.Options.supportsMultipleExecInstances = true;\n"
+      " Tool definition:\ndef.SFunctionName = 'sfun_temperature';\ndef.OutputFcnSpec = 'int8 y1 = temperature_read(uint"
+      "8 p1)';\ndef.StartFcnSpec = 'void temperature_init(void)';\ndef.HeaderFiles = {'temperature.h'};\ndef.SourceFile"
+      "s = {'temperature.c'};\ndef.Options.supportsMultipleExecInstances = true;\n"
       MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
       "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
       MaskPromptString	      "SFunctionSpec|Units:|Display function specification"
@@ -738,7 +738,7 @@ Library {
       MaskVisibilityString    "off,on,on"
       MaskToolTipString	      "on,on,on"
       MaskSelfModifiable      on
-      MaskDisplay	      "fprintf('uint8 y1 = temperature_read(uint8 p1)');"
+      MaskDisplay	      "fprintf('int8 y1 = temperature_read(uint8 p1)');"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "port"

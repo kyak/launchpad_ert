@@ -35,7 +35,7 @@ temperature.SFunctionName = 'sfun_temperature';
 temperature.HeaderFiles = {'temperature.h'};
 temperature.SourceFiles = {'temperature.c'};
 temperature.StartFcnSpec = 'void temperature_init(void)';
-temperature.OutputFcnSpec = 'uint8 y1 = temperature_read(uint8 p1)';
+temperature.OutputFcnSpec = 'int8 y1 = temperature_read(uint8 p1)';
 % Support calling from within For-Each subsystem
 temperature.Options.supportsMultipleExecInstances = true;
 %% Push button read
