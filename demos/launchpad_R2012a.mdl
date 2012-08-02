@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.126"
+    ComputedModelVersion    "1.146"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -40,9 +40,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Aug 01 17:18:56 2012"
-  RTWModifiedTimeStamp	  265736599
-  ModelVersionFormat	  "1.%<AutoIncrement:126>"
+  LastModifiedDate	  "Thu Aug 02 11:52:52 2012"
+  RTWModifiedTimeStamp	  265808824
+  ModelVersionFormat	  "1.%<AutoIncrement:146>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -80,6 +80,7 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "launchpad_R2012a"
+    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -743,6 +744,11 @@ Model {
   }
   BlockParameterDefaults {
     Block {
+      BlockType		      Bias
+      Bias		      "0"
+      SaturateOnIntegerOverflow	on
+    }
+    Block {
       BlockType		      Constant
       Value		      "1"
       VectorParams1D	      on
@@ -993,7 +999,7 @@ Model {
   }
   System {
     Name		    "launchpad_R2012a"
-    Location		    [523, 283, 1462, 913]
+    Location		    [157, 265, 1096, 895]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1007,7 +1013,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "174"
+    SIDHighWatermark	    "188"
     Block {
       BlockType		      SubSystem
       Name		      "Calibrate"
@@ -1383,7 +1389,7 @@ Model {
 	      Ports		      [0, 1]
 	      Position		      [15, 50, 165, 80]
 	      ZOrder		      5
-	      LibraryVersion	      "1.3"
+	      LibraryVersion	      "1.4"
 	      SourceBlock	      "launchpad_lib/Button"
 	      SourceType	      "Legacy Function"
 	      SFunctionSpec	      "uint8 y1 = button_get(void)"
@@ -1398,7 +1404,7 @@ Model {
 	      ZOrder		      29
 	      ShowName		      off
 	      AttributesFormatString  "%<SParameter1>"
-	      LibraryVersion	      "1.3"
+	      LibraryVersion	      "1.4"
 	      SourceBlock	      "launchpad_lib/Temperature"
 	      SourceType	      "Legacy Function"
 	      SFunctionSpec	      "uint8 y1 = temperature_read(uint8 p1)"
@@ -1422,7 +1428,7 @@ Model {
 	      ZOrder		      -9
 	      Port		      "2"
 	      IconDisplay	      "Port number"
-	      OutDataTypeStr	      "uint8"
+	      OutDataTypeStr	      "int8"
 	    }
 	    Line {
 	      SrcBlock		      "Temperature"
@@ -1715,7 +1721,7 @@ Model {
 	      ZOrder		      -9
 	      Port		      "2"
 	      IconDisplay	      "Port number"
-	      OutDataTypeStr	      "uint8"
+	      OutDataTypeStr	      "int8"
 	    }
 	    Line {
 	      SrcBlock		      "Data Type Conversion1"
@@ -1933,7 +1939,7 @@ Model {
       BlockType		      SubSystem
       Name		      "Outputs"
       SID		      "164"
-      Ports		      [2]
+      Ports		      [3]
       Position		      [830, 256, 930, 334]
       ZOrder		      -24
       MinAlgLoopOccurrences   off
@@ -1977,11 +1983,20 @@ Model {
 	  IconDisplay		  "Port number"
 	}
 	Block {
+	  BlockType		  Inport
+	  Name			  "temperature"
+	  SID			  "176"
+	  Position		  [45, 288, 75, 302]
+	  ZOrder		  -1
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
 	  BlockType		  SubSystem
 	  Name			  "Hardware"
 	  SID			  "168"
-	  Ports			  [2]
-	  Position		  [210, 255, 300, 390]
+	  Ports			  [3]
+	  Position		  [210, 257, 300, 393]
 	  ZOrder		  -19
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -2036,15 +2051,34 @@ Model {
 	      }
 	    }
 	    Block {
+	      BlockType		      Inport
+	      Name		      "temperature"
+	      SID		      "178"
+	      Position		      [100, 193, 130, 207]
+	      ZOrder		      -1
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      DataTypeConversion
+	      Name		      "Data Type Conversion"
+	      SID		      "187"
+	      Position		      [150, 183, 225, 217]
+	      ZOrder		      -5
+	      RndMeth		      "Floor"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
 	      BlockType		      Reference
 	      Name		      "LED"
 	      SID		      "172"
 	      Ports		      [1]
 	      Position		      [205, 55, 355, 85]
 	      ZOrder		      27
+	      ForegroundColor	      "[0.800000, 0.800000, 0.800000]"
 	      ShowName		      off
 	      AttributesFormatString  "LED: %<SParameter1>"
-	      LibraryVersion	      "1.3"
+	      LibraryVersion	      "1.4"
 	      SourceBlock	      "launchpad_lib/LED"
 	      SourceType	      "Legacy Function"
 	      SFunctionSpec	      "led_set(uint8 p1, uint8 u1)"
@@ -2058,13 +2092,27 @@ Model {
 	      Ports		      [1]
 	      Position		      [205, 110, 355, 140]
 	      ZOrder		      27
+	      ForegroundColor	      "[0.800000, 0.800000, 0.800000]"
 	      ShowName		      off
 	      AttributesFormatString  "LED: %<SParameter1>"
-	      LibraryVersion	      "1.3"
+	      LibraryVersion	      "1.4"
 	      SourceBlock	      "launchpad_lib/LED"
 	      SourceType	      "Legacy Function"
 	      SFunctionSpec	      "led_set(uint8 p1, uint8 u1)"
 	      SParameter1	      "Green"
+	      ShowSpec		      on
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "serialWrite"
+	      SID		      "177"
+	      Ports		      [1]
+	      Position		      [265, 185, 410, 215]
+	      ZOrder		      1
+	      LibraryVersion	      "1.4"
+	      SourceBlock	      "launchpad_lib/serialWrite"
+	      SourceType	      "Legacy Function"
+	      SFunctionSpec	      "void serial_putc(uint8 u1)"
 	      ShowSpec		      on
 	    }
 	    Line {
@@ -2085,14 +2133,26 @@ Model {
 	      DstBlock		      "LED1"
 	      DstPort		      1
 	    }
+	    Line {
+	      SrcBlock		      "temperature"
+	      SrcPort		      1
+	      DstBlock		      "Data Type Conversion"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Data Type Conversion"
+	      SrcPort		      1
+	      DstBlock		      "serialWrite"
+	      DstPort		      1
+	    }
 	  }
 	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Visu"
 	  SID			  "74"
-	  Ports			  [2]
-	  Position		  [210, 90, 300, 225]
+	  Ports			  [3]
+	  Position		  [210, 92, 300, 228]
 	  ZOrder		  -19
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -2104,7 +2164,7 @@ Model {
 	  VariantObject		  "software_variant"
 	  System {
 	    Name		    "Visu"
-	    Location		    [433, 403, 1323, 703]
+	    Location		    [248, 492, 1138, 792]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2147,21 +2207,31 @@ Model {
 	      }
 	    }
 	    Block {
+	      BlockType		      Inport
+	      Name		      "temperature"
+	      SID		      "175"
+	      Position		      [100, 158, 130, 172]
+	      ZOrder		      -1
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
 	      BlockType		      Scope
 	      Name		      "Scope"
 	      SID		      "108"
-	      Ports		      [2]
-	      Position		      [290, 76, 320, 109]
+	      Ports		      [3]
+	      Position		      [290, 78, 320, 112]
 	      ZOrder		      -3
 	      Floating		      off
-	      Location		      [1062, 309, 1778, 875]
-	      Open		      off
-	      NumInputPorts	      "2"
+	      Location		      [1081, 312, 1797, 878]
+	      Open		      on
+	      NumInputPorts	      "3"
 	      ZoomMode		      "xonly"
 	      List {
 		ListType		AxesTitles
 		axes1			"%<SignalLabel>"
 		axes2			"%<SignalLabel>"
+		axes3			"%<SignalLabel>"
 	      }
 	      List {
 		ListType		ScopeGraphics
@@ -2174,8 +2244,8 @@ Model {
 		MarkerStyles		"none|none|none|none|none|none"
 	      }
 	      ShowLegends	      off
-	      YMin		      "-5~-5"
-	      YMax		      "5~5"
+	      YMin		      "-5~-5~-5"
+	      YMax		      "5~5~5"
 	      DataFormat	      "StructureWithTime"
 	      LimitDataPoints	      off
 	      SampleTime	      "0"
@@ -2194,9 +2264,16 @@ Model {
 	      Labels		      [0, 0]
 	      SrcBlock		      "gLED"
 	      SrcPort		      1
-	      Points		      [75, 0; 0, -15]
+	      Points		      [75, 0; 0, -20]
 	      DstBlock		      "Scope"
 	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "temperature"
+	      SrcPort		      1
+	      Points		      [140, 0]
+	      DstBlock		      "Scope"
+	      DstPort		      3
 	    }
 	  }
 	}
@@ -2213,13 +2290,13 @@ Model {
       BlockType		      DataStoreMemory
       Name		      "Reference_Temperature"
       SID		      "124"
-      Position		      [285, 25, 355, 56]
+      Position		      [260, 30, 330, 61]
       ZOrder		      -4
       DataStoreName	      "temp_ref"
       ReadBeforeWriteMsg      "warning"
       WriteAfterWriteMsg      "warning"
       WriteAfterReadMsg	      "warning"
-      OutDataTypeStr	      "uint8"
+      OutDataTypeStr	      "int8"
     }
     Block {
       BlockType		      SubSystem
@@ -2271,10 +2348,30 @@ Model {
 	  PortDimensions	  "1"
 	}
 	Block {
+	  BlockType		  Bias
+	  Name			  "Bias"
+	  SID			  "180"
+	  Position		  [200, 220, 240, 250]
+	  ZOrder		  -5
+	  ShowName		  off
+	  Bias			  "1"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Bias
+	  Name			  "Bias1"
+	  SID			  "181"
+	  Position		  [200, 275, 240, 305]
+	  ZOrder		  -5
+	  ShowName		  off
+	  Bias			  "-1"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
 	  BlockType		  Constant
 	  Name			  "Constant"
 	  SID			  "130"
-	  Position		  [255, 120, 285, 150]
+	  Position		  [350, 120, 380, 150]
 	  ZOrder		  -5
 	  ShowName		  off
 	  OutDataTypeStr	  "uint8"
@@ -2283,45 +2380,30 @@ Model {
 	  BlockType		  Constant
 	  Name			  "Constant1"
 	  SID			  "131"
-	  Position		  [255, 210, 285, 240]
+	  Position		  [350, 210, 380, 240]
 	  ZOrder		  -5
 	  ShowName		  off
 	  Value			  "0"
 	  OutDataTypeStr	  "uint8"
 	}
 	Block {
-	  BlockType		  Gain
-	  Name			  "Gain"
-	  SID			  "133"
-	  Position		  [410, 165, 440, 195]
-	  ZOrder		  -11
+	  BlockType		  Constant
+	  Name			  "Constant2"
+	  SID			  "184"
+	  Position		  [360, 250, 390, 280]
+	  ZOrder		  -5
 	  ShowName		  off
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeStr	  "uint8"
-	  SaturateOnIntegerOverflow off
 	}
 	Block {
-	  BlockType		  Gain
-	  Name			  "Gain1"
-	  SID			  "134"
-	  Position		  [455, 235, 485, 265]
-	  ZOrder		  -11
+	  BlockType		  Constant
+	  Name			  "Constant3"
+	  SID			  "185"
+	  Position		  [355, 300, 385, 330]
+	  ZOrder		  -5
 	  ShowName		  off
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  Value			  "0"
 	  OutDataTypeStr	  "uint8"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Logic
-	  Name			  "Logical\nOperator"
-	  SID			  "129"
-	  Ports			  [1, 1]
-	  Position		  [400, 234, 430, 266]
-	  ZOrder		  -17
-	  ShowName		  off
-	  Operator		  "NOT"
-	  AllPortsSameDT	  off
-	  OutDataTypeStr	  "boolean"
 	}
 	Block {
 	  BlockType		  DataStoreRead
@@ -2337,7 +2419,7 @@ Model {
 	  Name			  "Relational\nOperator"
 	  SID			  "127"
 	  Ports			  [2, 1]
-	  Position		  [235, 162, 265, 193]
+	  Position		  [295, 162, 325, 193]
 	  ZOrder		  -18
 	  ShowName		  off
 	  Operator		  ">"
@@ -2345,10 +2427,33 @@ Model {
 	  OutDataTypeStr	  "boolean"
 	}
 	Block {
+	  BlockType		  RelationalOperator
+	  Name			  "Relational\nOperator1"
+	  SID			  "182"
+	  Ports			  [2, 1]
+	  Position		  [295, 267, 325, 298]
+	  ZOrder		  -18
+	  ShowName		  off
+	  Operator		  "<"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "boolean"
+	}
+	Block {
 	  BlockType		  Switch
 	  Name			  "Switch"
 	  SID			  "128"
-	  Position		  [325, 160, 375, 200]
+	  Position		  [420, 160, 470, 200]
+	  ZOrder		  -18
+	  ShowName		  off
+	  Criteria		  "u2 > Threshold"
+	  InputSameDT		  off
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Switch
+	  Name			  "Switch1"
+	  SID			  "183"
+	  Position		  [415, 265, 465, 305]
 	  ZOrder		  -18
 	  ShowName		  off
 	  Criteria		  "u2 > Threshold"
@@ -2359,7 +2464,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "rLED"
 	  SID			  "87"
-	  Position		  [550, 173, 580, 187]
+	  Position		  [545, 173, 575, 187]
 	  ZOrder		  -9
 	  IconDisplay		  "Port number"
 	}
@@ -2367,7 +2472,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "gLED"
 	  SID			  "88"
-	  Position		  [550, 243, 580, 257]
+	  Position		  [540, 278, 570, 292]
 	  ZOrder		  -9
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -2375,16 +2480,30 @@ Model {
 	Line {
 	  SrcBlock		  "temperature"
 	  SrcPort		  1
-	  Points		  [45, 0; 0, 25]
-	  DstBlock		  "Relational\nOperator"
-	  DstPort		  1
+	  Points		  [45, 0; 0, 25; 80, 0]
+	  Branch {
+	    DstBlock		    "Relational\nOperator"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 105]
+	    DstBlock		    "Relational\nOperator1"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Read_Reference_Temperature"
 	  SrcPort		  1
-	  Points		  [30, 0; 0, -50]
-	  DstBlock		  "Relational\nOperator"
-	  DstPort		  2
+	  Points		  [10, 0]
+	  Branch {
+	    DstBlock		    "Bias"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 55]
+	    DstBlock		    "Bias1"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Relational\nOperator"
@@ -2395,20 +2514,7 @@ Model {
 	Line {
 	  SrcBlock		  "Switch"
 	  SrcPort		  1
-	  Points		  [5, 0]
-	  Branch {
-	    DstBlock		    "Logical\nOperator"
-	    DstPort		    1
-	  }
-	  Branch {
-	    DstBlock		    "Gain"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Logical\nOperator"
-	  SrcPort		  1
-	  DstBlock		  "Gain1"
+	  DstBlock		  "rLED"
 	  DstPort		  1
 	}
 	Line {
@@ -2426,16 +2532,43 @@ Model {
 	  DstPort		  3
 	}
 	Line {
-	  SrcBlock		  "Gain"
+	  SrcBlock		  "Bias"
 	  SrcPort		  1
-	  DstBlock		  "rLED"
+	  Points		  [35, 0]
+	  DstBlock		  "Relational\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Bias1"
+	  SrcPort		  1
+	  DstBlock		  "Relational\nOperator1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Relational\nOperator1"
+	  SrcPort		  1
+	  DstBlock		  "Switch1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Constant2"
+	  SrcPort		  1
+	  Points		  [0, 5]
+	  DstBlock		  "Switch1"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Gain1"
+	  SrcBlock		  "Switch1"
 	  SrcPort		  1
 	  DstBlock		  "gLED"
 	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Constant3"
+	  SrcPort		  1
+	  Points		  [5, 0; 0, -15]
+	  DstBlock		  "Switch1"
+	  DstPort		  3
 	}
       }
     }
@@ -2728,14 +2861,14 @@ Model {
     Line {
       SrcBlock		      "Merge"
       SrcPort		      1
-      Points		      [0, 45]
+      Points		      [0, 40]
       DstBlock		      "Outputs"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Merge"
       SrcPort		      2
-      Points		      [0, -10]
+      Points		      [0, -30]
       DstBlock		      "Outputs"
       DstPort		      2
     }
@@ -2777,6 +2910,11 @@ Model {
 	DstBlock		"Calibrate"
 	DstPort			1
       }
+      Branch {
+	Points			[0, 110; 465, 0]
+	DstBlock		"Outputs"
+	DstPort			3
+      }
     }
     Line {
       SrcBlock		      "Scheduler"
@@ -2799,6 +2937,19 @@ Model {
       DstBlock		      "Merge"
       DstPort		      2
     }
+    Annotation {
+      SID		      "188"
+      Name		      "%Click to switch to hardware IO\nif (use_hardware > 0)\n    use_hardware = 0;\nelse\n    use_hardwa"
+      "re = 1;\nend\nlaunchpad_R2012a([],[],[],'sizes');"
+      Position		      [673, 55]
+      HorizontalAlignment     "left"
+      ForegroundColor	      "[0.000000, 0.000000, 0.500000]"
+      DropShadow	      on
+      ClickFcn		      "%Click to switch to hardware IO\nif (use_hardware > 0)\n    use_hardware = 0;\nelse\n    use_ha"
+      "rdware = 1;\nend\nlaunchpad_R2012a([],[],[],'sizes');"
+      UseDisplayTextAsClickCallback on
+      FontName		      "Consolas"
+    }
   }
 }
 MatData {
@@ -2815,8 +2966,8 @@ MatData {
     "&          4    (               !          D         #@   #@    &    \"     8         !0    @    !     0    $     "
     "    \"0    @           #P/PX    P    !@    @    &          4    (               !          D         #@   #     & "
     "   \"     8         !0    @               $         \"0         .    .     8    (    !@         %    \"     $    !"
-    "     0         )    \"        !  /J! #@   #@    &    \"     8         !0    @    !     0    $         \"0    @    "
-    "   !P 7RL0 X    P    !@    @    &          4    (               !          D         "
+    "     0         )    \"        #  /J! #@   #@    &    \"     8         !0    @    !     0    $         \"0    @    "
+    "   \"  %:A0 X    P    !@    @    &          4    (               !          D         "
   }
   DataRecord {
     Tag			    DataTag2
@@ -2899,8 +3050,8 @@ MatData {
     "&          4    (               !          D         #@   #@    &    \"     8         !0    @    !     0    $     "
     "    \"0    @           #P/PX    P    !@    @    &          4    (               !          D         #@   #     & "
     "   \"     8         !0    @               $         \"0         .    .     8    (    !@         %    \"     $    !"
-    "     0         )    \"        !  /J! #@   #@    &    \"     8         !0    @    !     0    $         \"0    @    "
-    "   !0 7\"L0 X    P    !@    @    &          4    (               !          D         "
+    "     0         )    \"        #  /J! #@   #@    &    \"     8         !0    @    !     0    $         \"0    @    "
+    "   !  $JA0 X    P    !@    @    &          4    (               !          D         "
   }
   DataRecord {
     Tag			    DataTag0
@@ -2986,30 +3137,32 @@ Stateflow {
     name		    "launchpad_R2012a"
     created		    "01-Aug-2012 15:42:54"
     isLibrary		    0
-    firstTarget		    15
+    firstTarget		    17
     debug {
       breakOn		      [1 1 1]
-      animation		      [1 0.2 0]
+      animation		      [1 0.2 1]
     }
     sfVersion		    76014001.00040001
   }
   chart {
     id			    2
     name		    "Scheduler/Modes"
-    windowPosition	    [738.75 149.25 665.25 467.25]
-    viewLimits		    [77.214 373.661 0 205.618]
-    zoomFactor		    0.477
+    windowPosition	    [571.5 119.25 786.75 540.75]
+    viewLimits		    [71.566 428.326 0 242.28]
+    zoomFactor		    0.48
     screen		    [1 1 1920 1080 1.333333333333333]
     treeNode		    [0 5 0 0]
-    firstTransition	    6
+    firstTransition	    7
     viewObj		    2
     machine		    1
     subviewS {
+      x1		      71.566
+      zoomFactor	      0.48
     }
-    ssIdHighWaterMark	    14
+    ssIdHighWaterMark	    18
     decomposition	    CLUSTER_CHART
-    firstEvent		    10
-    firstData		    13
+    firstEvent		    12
+    firstData		    15
     chartFileNumber	    2
     saturateOnIntegerOverflow 1
     userSpecifiedStateTransitionExecutionOrder 1
@@ -3021,7 +3174,7 @@ Stateflow {
     position		    [84.625 73.875 90 60]
     fontSize		    12
     chart		    2
-    treeNode		    [2 0 5 4]
+    treeNode		    [2 0 4 0]
     subviewer		    2
     ssIdNumber		    3
     type		    OR_STATE
@@ -3029,11 +3182,12 @@ Stateflow {
   }
   state {
     id			    4
-    labelString		    "Run\ndu:run;"
-    position		    [276.25 74.25 90 60]
+    labelString		    "Run"
+    position		    [295.1622 68.3062 125.0026 82.8748]
     fontSize		    12
     chart		    2
-    treeNode		    [2 0 3 0]
+    treeNode		    [2 6 5 3]
+    firstTransition	    11
     subviewer		    2
     ssIdNumber		    4
     type		    OR_STATE
@@ -3045,15 +3199,27 @@ Stateflow {
     position		    [173.3685 9.6865 90 60]
     fontSize		    12
     chart		    2
-    treeNode		    [2 0 0 3]
+    treeNode		    [2 0 0 4]
     subviewer		    2
     ssIdNumber		    11
     type		    OR_STATE
     decomposition	    CLUSTER_STATE
   }
-  transition {
+  state {
     id			    6
-    labelPosition	    [167.368 7.593 7.506 14.633]
+    labelString		    "execute\nen:run;"
+    position		    [353.1225 105.0077 43.2279 28.8186]
+    fontSize		    12
+    chart		    2
+    treeNode		    [4 0 0 0]
+    subviewer		    2
+    ssIdNumber		    15
+    type		    OR_STATE
+    decomposition	    CLUSTER_STATE
+  }
+  transition {
+    id			    7
+    labelPosition	    [167.368 7.593 7.556 14.731]
     fontSize		    12
     src {
       intersection	      [0 1 0 0 143.6075 23.6014 0 0]
@@ -3064,19 +3230,17 @@ Stateflow {
     }
     midPoint		    [154.8743 23.6014]
     chart		    2
-    linkNode		    [2 0 7]
-    dataLimits		    [143.608 173.368 21.201 26.001]
+    linkNode		    [2 0 8]
+    dataLimits		    [143.607 173.369 21.201 26.001]
     subviewer		    2
     drawStyle		    SMART
-    slide {
-    }
     executionOrder	    1
     ssIdNumber		    5
   }
   transition {
-    id			    7
+    id			    8
     labelString		    "[button > 0]"
-    labelPosition	    [82.549 27.038 60.405 14.633]
+    labelPosition	    [79.727 25.777 60.811 14.731]
     fontSize		    12
     src {
       id		      5
@@ -3088,8 +3252,8 @@ Stateflow {
     }
     midPoint		    [138.8172 42.7795]
     chart		    2
-    linkNode		    [2 6 8]
-    dataLimits		    [120.467 173.368 34.329 73.875]
+    linkNode		    [2 7 9]
+    dataLimits		    [120.467 173.369 34.329 73.875]
     stampAngle		    NaN
     subviewer		    2
     drawStyle		    SMART
@@ -3101,83 +3265,105 @@ Stateflow {
     ssIdNumber		    6
   }
   transition {
-    id			    8
-    labelPosition	    [231.2 97.624 7.506 14.633]
+    id			    9
+    labelPosition	    [242.298 97.626 7.556 14.731]
     fontSize		    12
     src {
       id		      3
-      intersection	      [2 1 -0 0.3958 174.625 97.6238 0 -6.2512]
+      intersection	      [2 1 0 0.3959 174.625 97.626 0 -6.2512]
     }
     dst {
       id		      4
-      intersection	      [4 -1 0 0.6104 276.25 97.6238 0 6.2512]
+      intersection	      [4 -1 0 0.6462 295.1622 97.626 0 6.2512]
     }
-    midPoint		    [223.386 97.6238]
+    midPoint		    [233.2533 97.626]
     chart		    2
-    linkNode		    [2 7 9]
-    dataLimits		    [174.625 276.25 95.224 100.024]
+    linkNode		    [2 8 10]
+    dataLimits		    [174.625 295.162 95.226 100.026]
     stampAngle		    NaN
     subviewer		    2
     drawStyle		    SMART
-    slide {
-    }
     executionOrder	    1
     ssIdNumber		    13
   }
   transition {
-    id			    9
+    id			    10
     labelString		    "[button > 0]"
-    labelPosition	    [199.81 121.762 60.405 14.633]
+    labelPosition	    [214.684 121.76 60.811 14.731]
     fontSize		    12
     src {
       id		      4
-      intersection	      [4 -1 0 0.235 276.25 120.1524 0 -15.9024]
+      intersection	      [4 -1 0 0.3744 295.1622 120.15 0 -15.9024]
     }
     dst {
       id		      3
-      intersection	      [2 1 -0 0.7713 174.625 120.1524 0 15.9024]
+      intersection	      [2 1 0 0.7713 174.625 120.15 0 15.9024]
     }
-    midPoint		    [227.489 120.1524]
+    midPoint		    [236.5339 120.15]
     chart		    2
-    linkNode		    [2 8 0]
-    dataLimits		    [174.625 276.25 117.752 122.552]
+    linkNode		    [2 9 0]
+    dataLimits		    [174.625 295.162 117.75 122.55]
     stampAngle		    NaN
     subviewer		    2
     drawStyle		    SMART
-    slide {
-    }
     executionOrder	    1
     ssIdNumber		    14
   }
-  event {
-    id			    10
-    ssIdNumber		    8
-    name		    "calibrate"
-    linkNode		    [2 0 11]
-    scope		    OUTPUT_EVENT
-    trigger		    FUNCTION_CALL_EVENT
-    machine		    1
-  }
-  event {
+  transition {
     id			    11
-    ssIdNumber		    9
-    name		    "run"
-    linkNode		    [2 10 12]
-    scope		    OUTPUT_EVENT
-    trigger		    FUNCTION_CALL_EVENT
-    machine		    1
+    labelString		    "after(10,tick)"
+    labelPosition	    [339.306 74.783 67.287 14.731]
+    fontSize		    12
+    src {
+      id		      6
+      intersection	      [1 0 -1 0.6069 379.3595 105.0077 0 0]
+    }
+    dst {
+      id		      6
+      intersection	      [4 -1 0 0.3438 353.1225 123.9199 0 0]
+    }
+    midPoint		    [350.9011 90.0581]
+    chart		    2
+    linkNode		    [4 0 0]
+    dataLimits		    [340.598 379.36 88.574 126.32]
+    stampAngle		    NaN
+    subviewer		    2
+    slide {
+      sticky		      SRC_STICK
+      midPointSticky	      1
+    }
+    executionOrder	    1
+    ssIdNumber		    18
   }
   event {
     id			    12
+    ssIdNumber		    8
+    name		    "calibrate"
+    linkNode		    [2 0 13]
+    scope		    OUTPUT_EVENT
+    trigger		    FUNCTION_CALL_EVENT
+    machine		    1
+  }
+  event {
+    id			    13
+    ssIdNumber		    9
+    name		    "run"
+    linkNode		    [2 12 14]
+    scope		    OUTPUT_EVENT
+    trigger		    FUNCTION_CALL_EVENT
+    machine		    1
+  }
+  event {
+    id			    14
     ssIdNumber		    12
     name		    "init"
-    linkNode		    [2 11 0]
+    linkNode		    [2 13 0]
     scope		    OUTPUT_EVENT
     trigger		    FUNCTION_CALL_EVENT
     machine		    1
   }
   data {
-    id			    13
+    id			    15
     ssIdNumber		    10
     name		    "button"
     linkNode		    [2 0 0]
@@ -3198,22 +3384,22 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    14
+    id			    16
     name		    "Scheduler/Modes"
     machine		    1
     chart		    2
   }
   target {
-    id			    15
+    id			    17
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
     machine		    1
-    linkNode		    [1 0 16]
+    linkNode		    [1 0 18]
   }
   target {
-    id			    16
+    id			    18
     name		    "rtw"
     machine		    1
-    linkNode		    [1 15 0]
+    linkNode		    [1 17 0]
   }
 }
