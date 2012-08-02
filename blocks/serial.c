@@ -16,14 +16,13 @@
 void serial_init(void)
 {
 #ifndef MATLAB_MEX_FILE
-	P1SEL  = RXD + TXD;                       
-  	P1SEL2 = RXD + TXD;                       
+	P1SEL  = RXD + TXD;
+  	P1SEL2 = RXD + TXD;
   	UCA0CTL1 |= UCSSEL_2;                     // SMCLK
-  	UCA0BR0 = 13;                             // 1/8MHz 9600
-  	UCA0BR1 = 0;                              // 1/8MHz 9600
-  	UCA0MCTL = UCBRS0;                        // Modulation UCBRSx = 1
-  	UCA0CTL1 &= ~UCSWRST;                     // Initialize USCI state machine
-  	IE2 |= UCA0RXIE;                          // Enable USCI_A0 RX interrupt
+  	UCA0BR0 = 52; //2400 see http://www.daycounter.com/Calculators/MSP430-Uart-Calculator.phtml
+  	UCA0BR1 = 0;
+  	UCA0MCTL = 0x20;
+  	UCA0CTL1 &= ~UCSWRST;                     // Initialize USCI state machine    
 #endif
 }
 
