@@ -26,7 +26,7 @@ if isunix
 		error('Your setup is not complete!');
     end
 	cd('rtiostreamserial_host');
-	system('make');
+	system(['make',' CFLAGS=-I',matlabroot,'/extern/include']);
 	cd(curpath);
 else
 	[CCSRoot, CompilerRoot] = ccs_setup_paths;
