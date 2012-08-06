@@ -1,0 +1,4 @@
+ATTRS{idVendor}=="0451", ATTRS{idProduct}=="f432", GROUP="users", MODE="0660", RUN="/home/user/bin/usbhid_noautoprobe.sh"
+#where usbhid_noautoprobe.sh is:
+##!/bin/bash
+#echo 0 > /sys/bus/hid/drivers_autoprobe
