@@ -76,6 +76,8 @@ int rtIOStreamRecv(
 	/* TODO: catch errors */
 	/* printf("rtIOStreamRecv: entering...\n"); */
 	*sizeRecvd = read(streamID, dst, size);
+	if (*sizeRecvd == -1)
+		*sizeRecvd = 0;
     return RTIOSTREAM_NO_ERROR;
 }
 
@@ -115,8 +117,11 @@ int	open_port(char * fullPortName, int baud)
 		printf("open_port: Unable to open %s\n", fullPortName);
 		return -1;
 	}
-	else
-		fcntl(fd, F_SETFL, 0); /* Blocking */
+	else {
+		int flags = fcntl(fd, F_GETFL, 0);
+		fcntl(fd, F_SETFL, flags | O_NONBLOCK); /* Non-Blocking */
+		//fcntl(fd, F_SETFL, 0); /* Blocking */
+	}
 	printf("open_port: Opened serial port %s\n", fullPortName);
 	if (tcgetattr(fd, &tty) != 0)
 	{
@@ -127,6 +132,8 @@ int	open_port(char * fullPortName, int baud)
 	 * http://git.savannah.gnu.org/gitweb/?p=coreutils.git;a=blob;f=src/stty.c
 	 * for speed_t string_to_baud (const char *arg);
 	 */
-	cfsetspeed(&tty, B2400);
+	/* cfsetspeed(&tty, B2400); */
+	cfsetspeed(&tty, baud);
+	tcsetattr(fd, TCSANOW, &tty);
 	return (fd);
 }

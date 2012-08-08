@@ -44,6 +44,7 @@ classdef Communicator < rtw.connectivity.RtIOStreamHostCommunicator
                     delay = delay + deltaT;
                 else
                     initByteValue=65;
+					disp(['Got magic sequence from target: ',num2str(recvdData)]);
                     assert(recvdData==initByteValue,...
                         'Target must transmit byte indicating startup is complete');
                 end
