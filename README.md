@@ -44,3 +44,4 @@ What this package would like to have:
 - Support for other LaunchPad compatible MCUs
 - Multirate support
 - PIL execution profiling
+- More documentation

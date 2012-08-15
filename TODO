@@ -4,7 +4,7 @@
 - PIL Profiling
 - What if PIL mode is enabled with serial read/write blocks?...
 - Other chips than 2553
-- Easier installation
+- More robust installation
 - More documentation
 - Create a BSW layer to supply signal values to application software
    Actually, for now all blocks are blocking. We only have rt_OneStep()
