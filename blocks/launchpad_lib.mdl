@@ -16,9 +16,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Aug 02 10:48:01 2012"
-  RTWModifiedTimeStamp	  265805277
-  ModelVersionFormat	  "1.%<AutoIncrement:4>"
+  LastModifiedDate	  "Wed Aug 15 11:12:32 2012"
+  RTWModifiedTimeStamp	  266929944
+  ModelVersionFormat	  "1.%<AutoIncrement:5>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -644,31 +644,18 @@ Library {
       ZOrder		      5
       FunctionName	      "sfun_button"
       EnableBusSupport	      off
-      MaskType		      "Legacy Function"
-      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
-      " Tool definition:\ndef.SFunctionName = 'sfun_button';\ndef.OutputFcnSpec = 'uint8 y1 = button_get(void)';\ndef.S"
-      "tartFcnSpec = 'void button_init(void)';\ndef.HeaderFiles = {'button.h'};\ndef.SourceFiles = {'button.c'};\ndef.O"
-      "ptions.supportsMultipleExecInstances = true;\n"
+      MaskType		      "Button"
+      MaskDescription	      "This block allows you to get the status of built-in push button of TI LaunchPad.\nEvery t"
+      "ime the button is pressed, the block will output 1."
       MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
       "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
-      MaskPromptString	      "SFunctionSpec|Display function specification"
-      MaskStyleString	      "edit,checkbox"
-      MaskVariables	      "SFunctionSpec=&1;ShowSpec=@2;"
-      MaskTunableValueString  "off,on"
-      MaskCallbackString      "|if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprintf"
-      "('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprint"
-      "f(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
-      MaskEnableString	      "on,on"
-      MaskVisibilityString    "off,on"
-      MaskToolTipString	      "on,on"
       MaskSelfModifiable      on
-      MaskDisplay	      "fprintf('%s','uint8 y1 = button_get(void)');"
+      MaskDisplay	      "fprintf('uint8 y1 = button_get(void)');"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "port"
       MaskPortRotate	      "default"
       MaskIconUnits	      "normalized"
-      MaskValueString	      "uint8 y1 = button_get(void)|on"
     }
     Block {
       BlockType		      S-Function
@@ -682,23 +669,18 @@ Library {
       FunctionName	      "sfun_LED"
       Parameters	      "SParameter1"
       EnableBusSupport	      off
-      MaskType		      "Legacy Function"
-      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
-      " Tool definition:\ndef.SFunctionName = 'LED_control';\ndef.OutputFcnSpec = 'led_set(uint8 p1, uint8 u1)';\ndef.S"
-      "tartFcnSpec = 'void led_init(void)';\ndef.HeaderFiles = {'led.h'};\ndef.SourceFiles = {'led.c'};\ndef.Options.su"
-      "pportsMultipleExecInstances = true;\n"
+      MaskType		      "LED"
+      MaskDescription	      "This block allows you to control the built-in LEDs of TI LaunchPad.\nSetting input to 1 w"
+      "ill light the selected LED."
       MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
       "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
-      MaskPromptString	      "SFunctionSpec|Choose LED:|Display function specification"
-      MaskStyleString	      "edit,popup(Red|Green),checkbox"
-      MaskVariables	      "SFunctionSpec=&1;SParameter1=@2;ShowSpec=@3;"
-      MaskTunableValueString  "off,on,on"
-      MaskCallbackString      "||if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprint"
-      "f('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprin"
-      "tf(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
-      MaskEnableString	      "on,on,on"
-      MaskVisibilityString    "off,on,on"
-      MaskToolTipString	      "on,on,on"
+      MaskPromptString	      "Choose LED:"
+      MaskStyleString	      "popup(Red|Green)"
+      MaskVariables	      "SParameter1=@1;"
+      MaskTunableValueString  "on"
+      MaskEnableString	      "on"
+      MaskVisibilityString    "on"
+      MaskToolTipString	      "on"
       MaskSelfModifiable      on
       MaskDisplay	      "fprintf('led_set(uint8 p1, uint8 u1)');"
       MaskIconFrame	      on
@@ -706,7 +688,7 @@ Library {
       MaskIconRotate	      "port"
       MaskPortRotate	      "default"
       MaskIconUnits	      "normalized"
-      MaskValueString	      "led_set(uint8 p1, uint8 u1)|Red|on"
+      MaskValueString	      "Red"
     }
     Block {
       BlockType		      S-Function
@@ -720,31 +702,26 @@ Library {
       FunctionName	      "sfun_temperature"
       Parameters	      "SParameter1"
       EnableBusSupport	      off
-      MaskType		      "Legacy Function"
-      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
-      " Tool definition:\ndef.SFunctionName = 'sfun_temperature';\ndef.OutputFcnSpec = 'int8 y1 = temperature_read(uint"
-      "8 p1)';\ndef.StartFcnSpec = 'void temperature_init(void)';\ndef.HeaderFiles = {'temperature.h'};\ndef.SourceFile"
-      "s = {'temperature.c'};\ndef.Options.supportsMultipleExecInstances = true;\n"
+      MaskType		      "Temperature sensor"
+      MaskDescription	      "This block allows you to read the measurements of internal temperature sensor of TI Launc"
+      "hPad."
       MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
       "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
-      MaskPromptString	      "SFunctionSpec|Units:|Display function specification"
-      MaskStyleString	      "edit,popup(Celsius|Fahrenheit),checkbox"
-      MaskVariables	      "SFunctionSpec=&1;SParameter1=@2;ShowSpec=@3;"
-      MaskTunableValueString  "off,on,on"
-      MaskCallbackString      "||if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprint"
-      "f('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprin"
-      "tf(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
-      MaskEnableString	      "on,on,on"
-      MaskVisibilityString    "off,on,on"
-      MaskToolTipString	      "on,on,on"
+      MaskPromptString	      "Units:"
+      MaskStyleString	      "popup(Celsius|Fahrenheit)"
+      MaskVariables	      "SParameter1=@1;"
+      MaskTunableValueString  "on"
+      MaskEnableString	      "on"
+      MaskVisibilityString    "on"
+      MaskToolTipString	      "on"
       MaskSelfModifiable      on
-      MaskDisplay	      "fprintf('int8 y1 = temperature_read(uint8 p1)');"
+      MaskDisplay	      "fprintf('uint8 y1 = temperature_read(uint8 p1)');"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "port"
       MaskPortRotate	      "default"
       MaskIconUnits	      "normalized"
-      MaskValueString	      "uint8 y1 = temperature_read(uint8 p1)|Celsius|on"
+      MaskValueString	      "Celsius"
     }
     Block {
       BlockType		      S-Function
@@ -755,23 +732,12 @@ Library {
       ZOrder		      2
       FunctionName	      "sfun_serialRead"
       EnableBusSupport	      off
-      MaskType		      "Legacy Function"
-      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
-      " Tool definition:\ndef.SFunctionName = 'sfun_serialRead';\ndef.OutputFcnSpec = 'uint8 y1 = serial_getc()';\ndef."
-      "StartFcnSpec = 'void serial_init(void)';\ndef.HeaderFiles = {'serial.h'};\ndef.SourceFiles = {'serial.c'};\ndef."
-      "Options.supportsMultipleExecInstances = true;\n"
+      MaskType		      "Serial Read"
+      MaskDescription	      "This block allows you to receive data on TI LaunchPad sent via serial connection from you"
+      "r host computer.\n\nMake sure to:\n1) Use 2400 baud rate on your host side.\n2) Swap TX/RX lines on TI LaunchPad"
+      " via jumpers (since this implementation is using hardware UART)."
       MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
       "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
-      MaskPromptString	      "SFunctionSpec|Display function specification"
-      MaskStyleString	      "edit,checkbox"
-      MaskVariables	      "SFunctionSpec=&1;ShowSpec=@2;"
-      MaskTunableValueString  "off,on"
-      MaskCallbackString      "|if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprintf"
-      "('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprint"
-      "f(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
-      MaskEnableString	      "on,on"
-      MaskVisibilityString    "off,on"
-      MaskToolTipString	      "on,on"
       MaskSelfModifiable      on
       MaskDisplay	      "fprintf('%s','uint8 y1 = serial_getc()');"
       MaskIconFrame	      on
@@ -779,7 +745,6 @@ Library {
       MaskIconRotate	      "port"
       MaskPortRotate	      "default"
       MaskIconUnits	      "normalized"
-      MaskValueString	      "uint8 y1 = serial_getc()|on"
     }
     Block {
       BlockType		      S-Function
@@ -790,31 +755,19 @@ Library {
       ZOrder		      1
       FunctionName	      "sfun_serialWrite"
       EnableBusSupport	      off
-      MaskType		      "Legacy Function"
-      MaskDescription	      "This block allows you to call the legacy functions specified by the following Legacy Code"
-      " Tool definition:\ndef.SFunctionName = 'sfun_serialWrite';\ndef.OutputFcnSpec = 'void serial_putc(uint8 u1)';\nd"
-      "ef.StartFcnSpec = 'void serial_init(void)';\ndef.HeaderFiles = {'serial.h'};\ndef.SourceFiles = {'serial.c'};\nd"
-      "ef.Options.supportsMultipleExecInstances = true;\n"
+      MaskType		      "Serial Write"
+      MaskDescription	      "This block allows you to send data via serial connection from TI LaunchPad to your host c"
+      "omputer.\n\nMake sure to:\n1) Use 2400 baud rate on your host side.\n2) Swap TX/RX lines on TI LaunchPad via jum"
+      "pers (since this implementation is using hardware UART).\n"
       MaskHelp		      "<p>This block was generated automatically by the Legacy Code Tool. For detailed help on this to"
       "ol, call<a href=\"matlab:legacy_code('help')\"> legacy_code('help')</a>.</p>"
-      MaskPromptString	      "SFunctionSpec|Display function specification"
-      MaskStyleString	      "edit,checkbox"
-      MaskVariables	      "SFunctionSpec=&1;ShowSpec=@2;"
-      MaskTunableValueString  "off,on"
-      MaskCallbackString      "|if strcmp(get_param(gcbh, 'ShowSpec'), 'on')\n  set_param(gcbh, 'MaskDisplay', sprintf"
-      "('fprintf(''%s'');', get_param(gcbh, 'SFunctionSpec')));\nelse\n  set_param(gcbh, 'MaskDisplay', sprintf('fprint"
-      "f(''%s'');', get_param(gcbh, 'FunctionName')));\nend"
-      MaskEnableString	      "on,on"
-      MaskVisibilityString    "off,on"
-      MaskToolTipString	      "on,on"
       MaskSelfModifiable      on
-      MaskDisplay	      "fprintf('%s','void serial_putc(uint8 u1)');"
+      MaskDisplay	      "fprintf('void serial_putc(uint8 u1)');"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "port"
       MaskPortRotate	      "default"
       MaskIconUnits	      "normalized"
-      MaskValueString	      "void serial_putc(uint8 u1)|on"
     }
   }
 }
