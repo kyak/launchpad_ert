@@ -240,7 +240,7 @@ ifeq ($(BUILD_MODE), real_time)
 endif
 
 ifeq ($(BUILD_MODE), model_reference)
-  SRCS += $(MODULES)
+  SRCS += $(subst ert_main.c,,$(MODULES))
 endif
 
 OBJS = $(subst \,/,$(addsuffix $(OBJ_EXT), $(basename $(SRCS)))) 
