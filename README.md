@@ -24,7 +24,7 @@ Make sure your toolchain is working (build and download some test project, check
 before you proceed!
 
 2) Extract this package somewhere. Make sure you have a working/supported
-host compiler (http://www.mathworks.com/support/compilers/R2012a/index.html) by running 'mex -setup' in MATLAB.
+host compiler (http://www.mathworks.com/support/compilers/R2012b/index.html) by running 'mex -setup' in MATLAB.
 Within MATLAB, 'cd' to the directory containing launchpad_setup.m and run this script.
 
 3) You should be good to go.
