@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.146"
+    ComputedModelVersion    "1.164"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -40,9 +40,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Aug 02 11:52:52 2012"
-  RTWModifiedTimeStamp	  265808824
-  ModelVersionFormat	  "1.%<AutoIncrement:146>"
+  LastModifiedDate	  "Mon Sep 17 13:34:34 2012"
+  RTWModifiedTimeStamp	  269789455
+  ModelVersionFormat	  "1.%<AutoIncrement:164>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -80,7 +80,6 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "launchpad_R2012a"
-    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -702,7 +701,7 @@ Model {
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=1 -aIgnoreTestpoints=0 "
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 191, 35, 1089, 728 ] 
+      ConfigPrmDlgPosition     [ 183, 5, 1097, 736 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -813,6 +812,11 @@ Model {
       BusSelectionMode	      off
     }
     Block {
+      BlockType		      From
+      IconDisplay	      "Tag"
+      TagVisibility	      "local"
+    }
+    Block {
       BlockType		      FromWorkspace
       VariableName	      "simulink_input"
       OutDataTypeStr	      "Inherit: auto"
@@ -835,6 +839,11 @@ Model {
       RndMeth		      "Floor"
       SaturateOnIntegerOverflow	on
       SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Goto
+      IconDisplay	      "Tag"
+      TagVisibility	      "local"
     }
     Block {
       BlockType		      Inport
@@ -999,7 +1008,7 @@ Model {
   }
   System {
     Name		    "launchpad_R2012a"
-    Location		    [157, 265, 1096, 895]
+    Location		    [282, 261, 1230, 736]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1013,314 +1022,42 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "188"
+    SIDHighWatermark	    "196"
     Block {
-      BlockType		      SubSystem
-      Name		      "Calibrate"
-      SID		      "52"
-      Ports		      [1, 2, 0, 1]
-      Position		      [530, 244, 655, 311]
-      ZOrder		      -19
+      BlockType		      From
+      Name		      "From"
+      SID		      "190"
+      Position		      [275, 372, 365, 398]
+      ZOrder		      -9
       ShowName		      off
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      RTWSystemCode	      "Auto"
-      FunctionWithSeparateData off
-      Opaque		      off
-      RequestExecContextInheritance off
-      MaskHideContents	      off
-      System {
-	Name			"Calibrate"
-	Location		[397, 454, 1341, 923]
-	Open			off
-	ModelBrowserVisibility	off
-	ModelBrowserWidth	200
-	ScreenColor		"white"
-	PaperOrientation	"landscape"
-	PaperPositionMode	"auto"
-	PaperType		"A4"
-	PaperUnits		"centimeters"
-	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
-	TiledPageScale		1
-	ShowPageBoundaries	off
-	ZoomFactor		"100"
-	Block {
-	  BlockType		  Inport
-	  Name			  "temperature"
-	  SID			  "122"
-	  Position		  [185, 213, 215, 227]
-	  ZOrder		  -1
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  TriggerPort
-	  Name			  "calibrate"
-	  SID			  "57"
-	  Ports			  []
-	  Position		  [322, 55, 342, 75]
-	  ZOrder		  -3
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
-	  PortDimensions	  "1"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant"
-	  SID			  "99"
-	  Position		  [475, 175, 505, 205]
-	  ZOrder		  -5
-	  ShowName		  off
-	  Value			  "0"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant1"
-	  SID			  "123"
-	  Position		  [475, 250, 505, 280]
-	  ZOrder		  -5
-	  ShowName		  off
-	  Value			  "0"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  DataStoreWrite
-	  Name			  "Save_Reference_Temperature"
-	  SID			  "125"
-	  Ports			  [1]
-	  Position		  [295, 204, 380, 236]
-	  ZOrder		  -6
-	  DataStoreName		  "temp_ref"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "rLED"
-	  SID			  "85"
-	  Position		  [550, 183, 580, 197]
-	  ZOrder		  -9
-	  IconDisplay		  "Port number"
-	  InitialOutput		  "0"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "gLED"
-	  SID			  "86"
-	  Position		  [550, 258, 580, 272]
-	  ZOrder		  -9
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	  InitialOutput		  "0"
-	}
-	Line {
-	  SrcBlock		  "Constant"
-	  SrcPort		  1
-	  DstBlock		  "rLED"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Constant1"
-	  SrcPort		  1
-	  DstBlock		  "gLED"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "temperature"
-	  SrcPort		  1
-	  DstBlock		  "Save_Reference_Temperature"
-	  DstPort		  1
-	}
-      }
+      GotoTag		      "temperature"
     }
     Block {
-      BlockType		      SubSystem
-      Name		      "Calibrate1"
-      SID		      "110"
-      Ports		      [0, 2, 0, 1]
-      Position		      [530, 124, 655, 191]
-      ZOrder		      -19
+      BlockType		      From
+      Name		      "From1"
+      SID		      "191"
+      Position		      [335, 257, 425, 283]
+      ZOrder		      -9
       ShowName		      off
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      RTWSystemCode	      "Auto"
-      FunctionWithSeparateData off
-      Opaque		      off
-      RequestExecContextInheritance off
-      MaskHideContents	      off
-      System {
-	Name			"Calibrate1"
-	Location		[159, 369, 1103, 838]
-	Open			off
-	ModelBrowserVisibility	off
-	ModelBrowserWidth	200
-	ScreenColor		"white"
-	PaperOrientation	"landscape"
-	PaperPositionMode	"auto"
-	PaperType		"A4"
-	PaperUnits		"centimeters"
-	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
-	TiledPageScale		1
-	ShowPageBoundaries	off
-	ZoomFactor		"100"
-	Block {
-	  BlockType		  TriggerPort
-	  Name			  "init"
-	  SID			  "111"
-	  Ports			  []
-	  Position		  [322, 55, 342, 75]
-	  ZOrder		  -3
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
-	  PortDimensions	  "1"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant"
-	  SID			  "112"
-	  Position		  [295, 135, 325, 165]
-	  ZOrder		  -5
-	  ShowName		  off
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant1"
-	  SID			  "113"
-	  Position		  [295, 225, 325, 255]
-	  ZOrder		  -5
-	  ShowName		  off
-	  Value			  "0"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "Counter\nLimited"
-	  SID			  "114"
-	  Ports			  [0, 1]
-	  Position		  [240, 175, 270, 205]
-	  ZOrder		  -7
-	  ShowName		  off
-	  AttributesFormatString  "Limit=%<uplimit>"
-	  LibraryVersion	  "1.260"
-	  SourceBlock		  "simulink/Sources/Counter\nLimited"
-	  SourceType		  "Counter Limited"
-	  uplimit		  "19"
-	  tsamp			  "-1"
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "Gain"
-	  SID			  "115"
-	  Position		  [480, 175, 510, 205]
-	  ZOrder		  -11
-	  ShowName		  off
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "uint8"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "Gain1"
-	  SID			  "135"
-	  Position		  [530, 250, 560, 280]
-	  ZOrder		  -11
-	  ShowName		  off
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "uint8"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Logic
-	  Name			  "Logical\nOperator"
-	  SID			  "116"
-	  Ports			  [1, 1]
-	  Position		  [465, 249, 495, 281]
-	  ZOrder		  -17
-	  ShowName		  off
-	  Operator		  "NOT"
-	  AllPortsSameDT	  off
-	  OutDataTypeStr	  "boolean"
-	}
-	Block {
-	  BlockType		  Switch
-	  Name			  "Switch"
-	  SID			  "117"
-	  Position		  [385, 170, 435, 210]
-	  ZOrder		  -18
-	  ShowName		  off
-	  AttributesFormatString  "Threshold=%<Threshold>"
-	  Threshold		  "10"
-	  InputSameDT		  off
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "rLED"
-	  SID			  "118"
-	  Position		  [610, 183, 640, 197]
-	  ZOrder		  -9
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "gLED"
-	  SID			  "119"
-	  Position		  [610, 258, 640, 272]
-	  ZOrder		  -9
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	}
-	Line {
-	  SrcBlock		  "Gain"
-	  SrcPort		  1
-	  DstBlock		  "rLED"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Logical\nOperator"
-	  SrcPort		  1
-	  DstBlock		  "Gain1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Counter\nLimited"
-	  SrcPort		  1
-	  DstBlock		  "Switch"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Constant1"
-	  SrcPort		  1
-	  Points		  [20, 0; 0, -35]
-	  DstBlock		  "Switch"
-	  DstPort		  3
-	}
-	Line {
-	  SrcBlock		  "Constant"
-	  SrcPort		  1
-	  Points		  [20, 0; 0, 25]
-	  DstBlock		  "Switch"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Switch"
-	  SrcPort		  1
-	  Points		  [10, 0]
-	  Branch {
-	    DstBlock		    "Gain"
-	    DstPort		    1
-	  }
-	  Branch {
-	    DstBlock		    "Logical\nOperator"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Gain1"
-	  SrcPort		  1
-	  DstBlock		  "gLED"
-	  DstPort		  1
-	}
-      }
+      GotoTag		      "temperature"
+    }
+    Block {
+      BlockType		      From
+      Name		      "From2"
+      SID		      "192"
+      Position		      [620, 377, 710, 403]
+      ZOrder		      -9
+      ShowName		      off
+      GotoTag		      "temperature"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto"
+      SID		      "189"
+      Position		      [165, 372, 260, 398]
+      ZOrder		      -10
+      ShowName		      off
+      GotoTag		      "temperature"
     }
     Block {
       BlockType		      SubSystem
@@ -1389,11 +1126,9 @@ Model {
 	      Ports		      [0, 1]
 	      Position		      [15, 50, 165, 80]
 	      ZOrder		      5
-	      LibraryVersion	      "1.4"
+	      LibraryVersion	      "1.5"
 	      SourceBlock	      "launchpad_lib/Button"
-	      SourceType	      "Legacy Function"
-	      SFunctionSpec	      "uint8 y1 = button_get(void)"
-	      ShowSpec		      on
+	      SourceType	      "Button"
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1404,12 +1139,10 @@ Model {
 	      ZOrder		      29
 	      ShowName		      off
 	      AttributesFormatString  "%<SParameter1>"
-	      LibraryVersion	      "1.4"
+	      LibraryVersion	      "1.5"
 	      SourceBlock	      "launchpad_lib/Temperature"
-	      SourceType	      "Legacy Function"
-	      SFunctionSpec	      "uint8 y1 = temperature_read(uint8 p1)"
+	      SourceType	      "Temperature sensor"
 	      SParameter1	      "Celsius"
-	      ShowSpec		      on
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -1482,6 +1215,12 @@ Model {
 	      ZOrder		      -5
 	      RndMeth		      "Floor"
 	      SaturateOnIntegerOverflow	off
+	      Port {
+		PortNumber		1
+		Name			"temperature"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
 	    }
 	    Block {
 	      BlockType		      DataTypeConversion
@@ -1491,6 +1230,12 @@ Model {
 	      ZOrder		      -5
 	      RndMeth		      "Floor"
 	      SaturateOnIntegerOverflow	off
+	      Port {
+		PortNumber		1
+		Name			"button"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -1708,7 +1453,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "button"
 	      SID		      "152"
-	      Position		      [250, 58, 280, 72]
+	      Position		      [320, 58, 350, 72]
 	      ZOrder		      -9
 	      IconDisplay	      "Port number"
 	      OutDataTypeStr	      "uint8"
@@ -1717,19 +1462,23 @@ Model {
 	      BlockType		      Outport
 	      Name		      "temperature"
 	      SID		      "153"
-	      Position		      [250, 143, 280, 157]
+	      Position		      [320, 143, 350, 157]
 	      ZOrder		      -9
 	      Port		      "2"
 	      IconDisplay	      "Port number"
 	      OutDataTypeStr	      "int8"
 	    }
 	    Line {
+	      Name		      "button"
+	      Labels		      [0, 0]
 	      SrcBlock		      "Data Type Conversion1"
 	      SrcPort		      1
 	      DstBlock		      "button"
 	      DstPort		      1
 	    }
 	    Line {
+	      Name		      "temperature"
+	      Labels		      [0, 0]
 	      SrcBlock		      "Data Type Conversion"
 	      SrcPort		      1
 	      DstBlock		      "temperature"
@@ -1780,7 +1529,7 @@ Model {
       Name		      "Merge"
       SID		      "91"
       Ports		      [6, 2]
-      Position		      [710, 178, 785, 372]
+      Position		      [610, 149, 685, 341]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -1859,6 +1608,12 @@ Model {
 	  ZOrder		  -14
 	  ShowName		  off
 	  Inputs		  "3"
+	  Port {
+	    PortNumber		    1
+	    Name		    "rLED"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
 	}
 	Block {
 	  BlockType		  Merge
@@ -1869,19 +1624,25 @@ Model {
 	  ZOrder		  -14
 	  ShowName		  off
 	  Inputs		  "3"
+	  Port {
+	    PortNumber		    1
+	    Name		    "gLED"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "rLED"
 	  SID			  "93"
-	  Position		  [245, 78, 275, 92]
+	  Position		  [265, 78, 295, 92]
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "gLED"
 	  SID			  "96"
-	  Position		  [245, 248, 275, 262]
+	  Position		  [265, 248, 295, 262]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
@@ -1892,6 +1653,8 @@ Model {
 	  DstPort		  1
 	}
 	Line {
+	  Name			  "rLED"
+	  Labels		  [0, 0]
 	  SrcBlock		  "Merge"
 	  SrcPort		  1
 	  DstBlock		  "rLED"
@@ -1910,6 +1673,8 @@ Model {
 	  DstPort		  1
 	}
 	Line {
+	  Name			  "gLED"
+	  Labels		  [0, 0]
 	  SrcBlock		  "Merge1"
 	  SrcPort		  1
 	  DstBlock		  "gLED"
@@ -1940,7 +1705,7 @@ Model {
       Name		      "Outputs"
       SID		      "164"
       Ports		      [3]
-      Position		      [830, 256, 930, 334]
+      Position		      [750, 150, 830, 440]
       ZOrder		      -24
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -2025,7 +1790,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "rLED"
 	      SID		      "169"
-	      Position		      [100, 58, 130, 72]
+	      Position		      [100, 63, 130, 77]
 	      ZOrder		      -1
 	      IconDisplay	      "Port number"
 	      Port {
@@ -2039,7 +1804,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "gLED"
 	      SID		      "170"
-	      Position		      [100, 108, 130, 122]
+	      Position		      [100, 118, 130, 132]
 	      ZOrder		      -1
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -2078,12 +1843,10 @@ Model {
 	      ForegroundColor	      "[0.800000, 0.800000, 0.800000]"
 	      ShowName		      off
 	      AttributesFormatString  "LED: %<SParameter1>"
-	      LibraryVersion	      "1.4"
+	      LibraryVersion	      "1.5"
 	      SourceBlock	      "launchpad_lib/LED"
-	      SourceType	      "Legacy Function"
-	      SFunctionSpec	      "led_set(uint8 p1, uint8 u1)"
+	      SourceType	      "LED"
 	      SParameter1	      "Red"
-	      ShowSpec		      on
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2095,12 +1858,10 @@ Model {
 	      ForegroundColor	      "[0.800000, 0.800000, 0.800000]"
 	      ShowName		      off
 	      AttributesFormatString  "LED: %<SParameter1>"
-	      LibraryVersion	      "1.4"
+	      LibraryVersion	      "1.5"
 	      SourceBlock	      "launchpad_lib/LED"
-	      SourceType	      "Legacy Function"
-	      SFunctionSpec	      "led_set(uint8 p1, uint8 u1)"
+	      SourceType	      "LED"
 	      SParameter1	      "Green"
-	      ShowSpec		      on
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2109,18 +1870,15 @@ Model {
 	      Ports		      [1]
 	      Position		      [265, 185, 410, 215]
 	      ZOrder		      1
-	      LibraryVersion	      "1.4"
+	      LibraryVersion	      "1.5"
 	      SourceBlock	      "launchpad_lib/serialWrite"
-	      SourceType	      "Legacy Function"
-	      SFunctionSpec	      "void serial_putc(uint8 u1)"
-	      ShowSpec		      on
+	      SourceType	      "Serial Write"
 	    }
 	    Line {
 	      Name		      "rLED"
 	      Labels		      [0, 0]
 	      SrcBlock		      "rLED"
 	      SrcPort		      1
-	      Points		      [25, 0; 0, 5]
 	      DstBlock		      "LED"
 	      DstPort		      1
 	    }
@@ -2129,7 +1887,6 @@ Model {
 	      Labels		      [0, 0]
 	      SrcBlock		      "gLED"
 	      SrcPort		      1
-	      Points		      [25, 0; 0, 10]
 	      DstBlock		      "LED1"
 	      DstPort		      1
 	    }
@@ -2186,7 +1943,8 @@ Model {
 	      IconDisplay	      "Port number"
 	      Port {
 		PortNumber		1
-		Name			"rLED"
+		PropagatedSignals	"rLED"
+		ShowPropagatedSignals	"on"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
@@ -2201,7 +1959,8 @@ Model {
 	      IconDisplay	      "Port number"
 	      Port {
 		PortNumber		1
-		Name			"gLED"
+		PropagatedSignals	"gLED"
+		ShowPropagatedSignals	"on"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
@@ -2214,6 +1973,13 @@ Model {
 	      ZOrder		      -1
 	      Port		      "3"
 	      IconDisplay	      "Port number"
+	      Port {
+		PortNumber		1
+		PropagatedSignals	"temperature"
+		ShowPropagatedSignals	"on"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
 	    }
 	    Block {
 	      BlockType		      Scope
@@ -2223,8 +1989,8 @@ Model {
 	      Position		      [290, 78, 320, 112]
 	      ZOrder		      -3
 	      Floating		      off
-	      Location		      [1081, 312, 1797, 878]
-	      Open		      on
+	      Location		      [1093, 216, 1809, 782]
+	      Open		      off
 	      NumInputPorts	      "3"
 	      ZoomMode		      "xonly"
 	      List {
@@ -2244,14 +2010,14 @@ Model {
 		MarkerStyles		"none|none|none|none|none|none"
 	      }
 	      ShowLegends	      off
-	      YMin		      "-5~-5~-5"
-	      YMax		      "5~5~5"
+	      TimeRange		      "10"
+	      YMin		      "0~0~0"
+	      YMax		      "1~1~120"
 	      DataFormat	      "StructureWithTime"
 	      LimitDataPoints	      off
 	      SampleTime	      "0"
 	    }
 	    Line {
-	      Name		      "rLED"
 	      Labels		      [0, 0]
 	      SrcBlock		      "rLED"
 	      SrcPort		      1
@@ -2260,7 +2026,6 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "gLED"
 	      Labels		      [0, 0]
 	      SrcBlock		      "gLED"
 	      SrcPort		      1
@@ -2269,6 +2034,7 @@ Model {
 	      DstPort		      2
 	    }
 	    Line {
+	      Labels		      [0, 0]
 	      SrcBlock		      "temperature"
 	      SrcPort		      1
 	      Points		      [140, 0]
@@ -2300,284 +2066,10 @@ Model {
     }
     Block {
       BlockType		      SubSystem
-      Name		      "Run"
-      SID		      "49"
-      Ports		      [1, 2, 0, 1]
-      Position		      [380, 303, 500, 367]
-      ZOrder		      -19
-      ShowName		      off
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      RTWSystemCode	      "Auto"
-      FunctionWithSeparateData off
-      Opaque		      off
-      RequestExecContextInheritance off
-      MaskHideContents	      off
-      System {
-	Name			"Run"
-	Location		[433, 403, 1234, 809]
-	Open			off
-	ModelBrowserVisibility	off
-	ModelBrowserWidth	200
-	ScreenColor		"white"
-	PaperOrientation	"landscape"
-	PaperPositionMode	"auto"
-	PaperType		"A4"
-	PaperUnits		"centimeters"
-	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
-	TiledPageScale		1
-	ShowPageBoundaries	off
-	ZoomFactor		"100"
-	Block {
-	  BlockType		  Inport
-	  Name			  "temperature"
-	  SID			  "98"
-	  Position		  [95, 138, 125, 152]
-	  ZOrder		  -1
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  TriggerPort
-	  Name			  "run"
-	  SID			  "58"
-	  Ports			  []
-	  Position		  [222, 40, 242, 60]
-	  ZOrder		  -3
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
-	  PortDimensions	  "1"
-	}
-	Block {
-	  BlockType		  Bias
-	  Name			  "Bias"
-	  SID			  "180"
-	  Position		  [200, 220, 240, 250]
-	  ZOrder		  -5
-	  ShowName		  off
-	  Bias			  "1"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Bias
-	  Name			  "Bias1"
-	  SID			  "181"
-	  Position		  [200, 275, 240, 305]
-	  ZOrder		  -5
-	  ShowName		  off
-	  Bias			  "-1"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant"
-	  SID			  "130"
-	  Position		  [350, 120, 380, 150]
-	  ZOrder		  -5
-	  ShowName		  off
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant1"
-	  SID			  "131"
-	  Position		  [350, 210, 380, 240]
-	  ZOrder		  -5
-	  ShowName		  off
-	  Value			  "0"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant2"
-	  SID			  "184"
-	  Position		  [360, 250, 390, 280]
-	  ZOrder		  -5
-	  ShowName		  off
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant3"
-	  SID			  "185"
-	  Position		  [355, 300, 385, 330]
-	  ZOrder		  -5
-	  ShowName		  off
-	  Value			  "0"
-	  OutDataTypeStr	  "uint8"
-	}
-	Block {
-	  BlockType		  DataStoreRead
-	  Name			  "Read_Reference_Temperature"
-	  SID			  "126"
-	  Ports			  [0, 1]
-	  Position		  [55, 219, 155, 251]
-	  ZOrder		  -5
-	  DataStoreName		  "temp_ref"
-	}
-	Block {
-	  BlockType		  RelationalOperator
-	  Name			  "Relational\nOperator"
-	  SID			  "127"
-	  Ports			  [2, 1]
-	  Position		  [295, 162, 325, 193]
-	  ZOrder		  -18
-	  ShowName		  off
-	  Operator		  ">"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "boolean"
-	}
-	Block {
-	  BlockType		  RelationalOperator
-	  Name			  "Relational\nOperator1"
-	  SID			  "182"
-	  Ports			  [2, 1]
-	  Position		  [295, 267, 325, 298]
-	  ZOrder		  -18
-	  ShowName		  off
-	  Operator		  "<"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "boolean"
-	}
-	Block {
-	  BlockType		  Switch
-	  Name			  "Switch"
-	  SID			  "128"
-	  Position		  [420, 160, 470, 200]
-	  ZOrder		  -18
-	  ShowName		  off
-	  Criteria		  "u2 > Threshold"
-	  InputSameDT		  off
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Switch
-	  Name			  "Switch1"
-	  SID			  "183"
-	  Position		  [415, 265, 465, 305]
-	  ZOrder		  -18
-	  ShowName		  off
-	  Criteria		  "u2 > Threshold"
-	  InputSameDT		  off
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "rLED"
-	  SID			  "87"
-	  Position		  [545, 173, 575, 187]
-	  ZOrder		  -9
-	  IconDisplay		  "Port number"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "gLED"
-	  SID			  "88"
-	  Position		  [540, 278, 570, 292]
-	  ZOrder		  -9
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	}
-	Line {
-	  SrcBlock		  "temperature"
-	  SrcPort		  1
-	  Points		  [45, 0; 0, 25; 80, 0]
-	  Branch {
-	    DstBlock		    "Relational\nOperator"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, 105]
-	    DstBlock		    "Relational\nOperator1"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Read_Reference_Temperature"
-	  SrcPort		  1
-	  Points		  [10, 0]
-	  Branch {
-	    DstBlock		    "Bias"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, 55]
-	    DstBlock		    "Bias1"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Relational\nOperator"
-	  SrcPort		  1
-	  DstBlock		  "Switch"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Switch"
-	  SrcPort		  1
-	  DstBlock		  "rLED"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Constant"
-	  SrcPort		  1
-	  Points		  [15, 0; 0, 30]
-	  DstBlock		  "Switch"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Constant1"
-	  SrcPort		  1
-	  Points		  [15, 0; 0, -30]
-	  DstBlock		  "Switch"
-	  DstPort		  3
-	}
-	Line {
-	  SrcBlock		  "Bias"
-	  SrcPort		  1
-	  Points		  [35, 0]
-	  DstBlock		  "Relational\nOperator"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Bias1"
-	  SrcPort		  1
-	  DstBlock		  "Relational\nOperator1"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Relational\nOperator1"
-	  SrcPort		  1
-	  DstBlock		  "Switch1"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Constant2"
-	  SrcPort		  1
-	  Points		  [0, 5]
-	  DstBlock		  "Switch1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Switch1"
-	  SrcPort		  1
-	  DstBlock		  "gLED"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Constant3"
-	  SrcPort		  1
-	  Points		  [5, 0; 0, -15]
-	  DstBlock		  "Switch1"
-	  DstPort		  3
-	}
-      }
-    }
-    Block {
-      BlockType		      SubSystem
       Name		      "Scheduler"
       SID		      "62"
       Ports		      [1, 3]
-      Position		      [225, 148, 330, 292]
+      Position		      [175, 94, 280, 346]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -2604,7 +2096,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "button"
 	  SID			  "79"
-	  Position		  [135, 173, 165, 187]
+	  Position		  [65, 178, 95, 192]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
@@ -2613,7 +2105,7 @@ Model {
 	  Name			  "Modes"
 	  SID			  "56"
 	  Ports			  [1, 3]
-	  Position		  [225, 106, 390, 254]
+	  Position		  [155, 111, 320, 259]
 	  ZOrder		  -1
 	  LibraryVersion	  "1.251"
 	  ErrorFcn		  "Stateflow.Translate.translate"
@@ -2768,14 +2260,14 @@ Model {
 	  BlockType		  Outport
 	  Name			  "init"
 	  SID			  "109"
-	  Position		  [420, 223, 450, 237]
+	  Position		  [350, 228, 380, 242]
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "calibrate"
 	  SID			  "63"
-	  Position		  [420, 123, 450, 137]
+	  Position		  [350, 128, 380, 142]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
@@ -2783,7 +2275,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "run"
 	  SID			  "64"
-	  Position		  [420, 173, 450, 187]
+	  Position		  [350, 178, 380, 192]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	}
@@ -2814,6 +2306,520 @@ Model {
       }
     }
     Block {
+      BlockType		      SubSystem
+      Name		      "calibrate"
+      SID		      "52"
+      Ports		      [1, 2, 0, 1]
+      Position		      [450, 238, 550, 302]
+      ZOrder		      -19
+      ShowName		      off
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"calibrate"
+	Location		[397, 454, 1341, 923]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "temperature"
+	  SID			  "122"
+	  Position		  [40, 113, 70, 127]
+	  ZOrder		  -1
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  TriggerPort
+	  Name			  "calibrate"
+	  SID			  "57"
+	  Ports			  []
+	  Position		  [157, 25, 177, 45]
+	  ZOrder		  -3
+	  TriggerType		  "function-call"
+	  StatesWhenEnabling	  "held"
+	  PortDimensions	  "1"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant"
+	  SID			  "99"
+	  Position		  [330, 75, 360, 105]
+	  ZOrder		  -5
+	  ShowName		  off
+	  Value			  "0"
+	  OutDataTypeStr	  "uint8"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant1"
+	  SID			  "123"
+	  Position		  [330, 150, 360, 180]
+	  ZOrder		  -5
+	  ShowName		  off
+	  Value			  "0"
+	  OutDataTypeStr	  "uint8"
+	}
+	Block {
+	  BlockType		  DataStoreWrite
+	  Name			  "Save_Reference_Temperature"
+	  SID			  "125"
+	  Ports			  [1]
+	  Position		  [150, 104, 235, 136]
+	  ZOrder		  -6
+	  DataStoreName		  "temp_ref"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "rLED"
+	  SID			  "85"
+	  Position		  [405, 83, 435, 97]
+	  ZOrder		  -9
+	  IconDisplay		  "Port number"
+	  InitialOutput		  "0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "gLED"
+	  SID			  "86"
+	  Position		  [405, 158, 435, 172]
+	  ZOrder		  -9
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  InitialOutput		  "0"
+	}
+	Line {
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  DstBlock		  "rLED"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Constant1"
+	  SrcPort		  1
+	  DstBlock		  "gLED"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "temperature"
+	  SrcPort		  1
+	  DstBlock		  "Save_Reference_Temperature"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "init"
+      SID		      "110"
+      Ports		      [0, 2, 0, 1]
+      Position		      [340, 153, 410, 217]
+      ZOrder		      -19
+      ShowName		      off
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"init"
+	Location		[854, 325, 1631, 685]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  TriggerPort
+	  Name			  "init"
+	  SID			  "111"
+	  Ports			  []
+	  Position		  [182, 25, 202, 45]
+	  ZOrder		  -3
+	  TriggerType		  "function-call"
+	  StatesWhenEnabling	  "held"
+	  PortDimensions	  "1"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant"
+	  SID			  "112"
+	  Position		  [90, 90, 120, 120]
+	  ZOrder		  -5
+	  ShowName		  off
+	  OutDataTypeStr	  "uint8"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant1"
+	  SID			  "113"
+	  Position		  [90, 180, 120, 210]
+	  ZOrder		  -5
+	  ShowName		  off
+	  Value			  "0"
+	  OutDataTypeStr	  "uint8"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Counter\nLimited"
+	  SID			  "114"
+	  Ports			  [0, 1]
+	  Position		  [35, 130, 65, 160]
+	  ZOrder		  -7
+	  ShowName		  off
+	  AttributesFormatString  "Limit=%<uplimit>"
+	  LibraryVersion	  "1.260"
+	  SourceBlock		  "simulink/Sources/Counter\nLimited"
+	  SourceType		  "Counter Limited"
+	  uplimit		  "19"
+	  tsamp			  "-1"
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain"
+	  SID			  "115"
+	  Position		  [275, 130, 305, 160]
+	  ZOrder		  -11
+	  ShowName		  off
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "uint8"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Gain
+	  Name			  "Gain1"
+	  SID			  "135"
+	  Position		  [325, 205, 355, 235]
+	  ZOrder		  -11
+	  ShowName		  off
+	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
+	  OutDataTypeStr	  "uint8"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Logic
+	  Name			  "Logical\nOperator"
+	  SID			  "116"
+	  Ports			  [1, 1]
+	  Position		  [260, 204, 290, 236]
+	  ZOrder		  -17
+	  ShowName		  off
+	  Operator		  "NOT"
+	  AllPortsSameDT	  off
+	  OutDataTypeStr	  "boolean"
+	}
+	Block {
+	  BlockType		  Switch
+	  Name			  "Switch"
+	  SID			  "117"
+	  Position		  [180, 125, 230, 165]
+	  ZOrder		  -18
+	  ShowName		  off
+	  AttributesFormatString  "Threshold=%<Threshold>"
+	  Threshold		  "10"
+	  InputSameDT		  off
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "rLED"
+	  SID			  "118"
+	  Position		  [405, 138, 435, 152]
+	  ZOrder		  -9
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "gLED"
+	  SID			  "119"
+	  Position		  [405, 213, 435, 227]
+	  ZOrder		  -9
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Gain"
+	  SrcPort		  1
+	  DstBlock		  "rLED"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Logical\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Gain1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Counter\nLimited"
+	  SrcPort		  1
+	  DstBlock		  "Switch"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Constant1"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, -35]
+	  DstBlock		  "Switch"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, 25]
+	  DstBlock		  "Switch"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Switch"
+	  SrcPort		  1
+	  Points		  [10, 0]
+	  Branch {
+	    DstBlock		    "Gain"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Logical\nOperator"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Gain1"
+	  SrcPort		  1
+	  DstBlock		  "gLED"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "run"
+      SID		      "49"
+      Ports		      [1, 2, 0, 1]
+      Position		      [380, 353, 500, 417]
+      ZOrder		      -19
+      ShowName		      off
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"run"
+	Location		[433, 403, 1234, 809]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "temperature"
+	  SID			  "98"
+	  Position		  [90, 163, 120, 177]
+	  ZOrder		  -1
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  TriggerPort
+	  Name			  "run"
+	  SID			  "58"
+	  Ports			  []
+	  Position		  [222, 40, 242, 60]
+	  ZOrder		  -3
+	  TriggerType		  "function-call"
+	  StatesWhenEnabling	  "held"
+	  PortDimensions	  "1"
+	}
+	Block {
+	  BlockType		  Bias
+	  Name			  "Bias"
+	  SID			  "180"
+	  Position		  [200, 220, 240, 250]
+	  ZOrder		  -5
+	  ShowName		  off
+	  Bias			  "1"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Bias
+	  Name			  "Bias1"
+	  SID			  "181"
+	  Position		  [200, 275, 240, 305]
+	  ZOrder		  -5
+	  ShowName		  off
+	  Bias			  "-1"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion"
+	  SID			  "194"
+	  Position		  [375, 163, 450, 197]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataTypeConversion
+	  Name			  "Data Type Conversion1"
+	  SID			  "195"
+	  Position		  [375, 268, 450, 302]
+	  ZOrder		  -5
+	  ShowName		  off
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  DataStoreRead
+	  Name			  "Read_Reference_Temperature"
+	  SID			  "126"
+	  Ports			  [0, 1]
+	  Position		  [55, 219, 155, 251]
+	  ZOrder		  -5
+	  DataStoreName		  "temp_ref"
+	}
+	Block {
+	  BlockType		  RelationalOperator
+	  Name			  "Relational\nOperator"
+	  SID			  "127"
+	  Ports			  [2, 1]
+	  Position		  [295, 162, 325, 193]
+	  ZOrder		  -18
+	  ShowName		  off
+	  Operator		  ">"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "boolean"
+	}
+	Block {
+	  BlockType		  RelationalOperator
+	  Name			  "Relational\nOperator1"
+	  SID			  "182"
+	  Ports			  [2, 1]
+	  Position		  [295, 267, 325, 298]
+	  ZOrder		  -18
+	  ShowName		  off
+	  Operator		  "<"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "boolean"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "rLED"
+	  SID			  "87"
+	  Position		  [545, 173, 575, 187]
+	  ZOrder		  -9
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "gLED"
+	  SID			  "88"
+	  Position		  [540, 278, 570, 292]
+	  ZOrder		  -9
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "temperature"
+	  SrcPort		  1
+	  Points		  [130, 0]
+	  Branch {
+	    DstBlock		    "Relational\nOperator"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 105]
+	    DstBlock		    "Relational\nOperator1"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Read_Reference_Temperature"
+	  SrcPort		  1
+	  Points		  [10, 0]
+	  Branch {
+	    DstBlock		    "Bias"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 55]
+	    DstBlock		    "Bias1"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Relational\nOperator"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Bias"
+	  SrcPort		  1
+	  Points		  [35, 0]
+	  DstBlock		  "Relational\nOperator"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Bias1"
+	  SrcPort		  1
+	  DstBlock		  "Relational\nOperator1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Relational\nOperator1"
+	  SrcPort		  1
+	  DstBlock		  "Data Type Conversion1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion1"
+	  SrcPort		  1
+	  DstBlock		  "gLED"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Data Type Conversion"
+	  SrcPort		  1
+	  DstBlock		  "rLED"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
       BlockType		      SignalViewerScope
       Name		      "Scope"
       SID		      "142"
@@ -2822,10 +2828,44 @@ Model {
       IOType		      "viewer"
       List {
 	ListType		IOSignalStrings
-	set0ParseKeys		"24"
-	set0Sigs		"Calibrate/temperature:o1"
+	set0ParseKeys		"9"
+	set0Sigs		"Inputs:o1"
+	set1ParseKeys		"9"
+	set1Sigs		"Inputs:o2"
+	set2ParseKeys		"8,8"
+	set2Sigs		"Merge:o1Merge:o2"
       }
-      Location		      [975, 607, 1299, 846]
+      Location		      [1, 48, 1921, 1049]
+      Open		      off
+      NumInputPorts	      "3"
+      List {
+	ListType		AxesTitles
+	axes1			"Push button"
+	axes2			"Temperature"
+	axes3			"LEDs"
+      }
+      ShowDataMarkers	      off
+      ShowLegends	      off
+      TimeRange		      "10"
+      YMin		      "0~0~0"
+      YMax		      "1~120~1"
+      LimitDataPoints	      off
+      MaxDataPoints	      "7500"
+      RefreshTime	      0.035000
+    }
+    Block {
+      BlockType		      SignalViewerScope
+      Name		      "Scope1"
+      SID		      "196"
+      Ports		      []
+      Position		      [20, 15, 60, 55]
+      IOType		      "viewer"
+      List {
+	ListType		IOSignalStrings
+	set0ParseKeys		"18,33"
+	set0Sigs		"run/temperature:o1run/Read_Reference_Temperature:o1"
+      }
+      Location		      [1075, 580, 1399, 819]
       Open		      off
       NumInputPorts	      "1"
       List {
@@ -2834,22 +2874,22 @@ Model {
       }
       ShowDataMarkers	      off
       ShowLegends	      off
-      LimitDataPoints	      off
+      SaveName		      "ScopeData1"
       MaxDataPoints	      "7500"
       RefreshTime	      0.035000
     }
     Line {
       SrcBlock		      "Scheduler"
       SrcPort		      2
-      Points		      [255, 0]
-      DstBlock		      "Calibrate"
+      Points		      [215, 0]
+      DstBlock		      "calibrate"
       DstPort		      trigger
     }
     Line {
       SrcBlock		      "Scheduler"
       SrcPort		      3
-      Points		      [105, 0]
-      DstBlock		      "Run"
+      Points		      [155, 0]
+      DstBlock		      "run"
       DstPort		      trigger
     }
     Line {
@@ -2861,81 +2901,86 @@ Model {
     Line {
       SrcBlock		      "Merge"
       SrcPort		      1
-      Points		      [0, 40]
       DstBlock		      "Outputs"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Merge"
       SrcPort		      2
-      Points		      [0, -30]
       DstBlock		      "Outputs"
       DstPort		      2
     }
     Line {
-      SrcBlock		      "Calibrate"
+      SrcBlock		      "calibrate"
       SrcPort		      1
+      Points		      [20, 0; 0, -25]
       DstBlock		      "Merge"
       DstPort		      3
     }
     Line {
-      SrcBlock		      "Calibrate"
+      SrcBlock		      "calibrate"
       SrcPort		      2
-      Points		      [0, -5]
+      Points		      [25, 0; 0, -25]
       DstBlock		      "Merge"
       DstPort		      4
     }
     Line {
-      SrcBlock		      "Run"
+      SrcBlock		      "run"
       SrcPort		      1
+      Points		      [80, 0; 0, -80]
       DstBlock		      "Merge"
       DstPort		      5
     }
     Line {
-      SrcBlock		      "Run"
+      SrcBlock		      "run"
       SrcPort		      2
+      Points		      [85, 0; 0, -80]
       DstBlock		      "Merge"
       DstPort		      6
     }
     Line {
-      SrcBlock		      "Inputs"
-      SrcPort		      2
-      Points		      [215, 0]
-      Branch {
-	DstBlock		"Run"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, -55]
-	DstBlock		"Calibrate"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 110; 465, 0]
-	DstBlock		"Outputs"
-	DstPort			3
-      }
-    }
-    Line {
-      SrcBlock		      "Scheduler"
+      SrcBlock		      "init"
       SrcPort		      1
-      Points		      [55, 0; 0, -61]
-      DstBlock		      "Calibrate1"
-      DstPort		      trigger
-    }
-    Line {
-      SrcBlock		      "Calibrate1"
-      SrcPort		      1
-      Points		      [30, 0; 0, 60]
       DstBlock		      "Merge"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Calibrate1"
+      SrcBlock		      "init"
       SrcPort		      2
-      Points		      [15, 0; 0, 55]
       DstBlock		      "Merge"
       DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Inputs"
+      SrcPort		      2
+      Points		      [10, 0; 0, 50]
+      DstBlock		      "Goto"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "From"
+      SrcPort		      1
+      DstBlock		      "run"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "From1"
+      SrcPort		      1
+      DstBlock		      "calibrate"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "From2"
+      SrcPort		      1
+      DstBlock		      "Outputs"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Scheduler"
+      SrcPort		      1
+      Points		      [90, 0]
+      DstBlock		      "init"
+      DstPort		      trigger
     }
     Annotation {
       SID		      "188"
@@ -2967,7 +3012,7 @@ MatData {
     "    \"0    @           #P/PX    P    !@    @    &          4    (               !          D         #@   #     & "
     "   \"     8         !0    @               $         \"0         .    .     8    (    !@         %    \"     $    !"
     "     0         )    \"        #  /J! #@   #@    &    \"     8         !0    @    !     0    $         \"0    @    "
-    "   \"  %:A0 X    P    !@    @    &          4    (               !          D         "
+    "   !P &J@0 X    P    !@    @    &          4    (               !          D         "
   }
   DataRecord {
     Tag			    DataTag2
@@ -3051,7 +3096,7 @@ MatData {
     "    \"0    @           #P/PX    P    !@    @    &          4    (               !          D         #@   #     & "
     "   \"     8         !0    @               $         \"0         .    .     8    (    !@         %    \"     $    !"
     "     0         )    \"        #  /J! #@   #@    &    \"     8         !0    @    !     0    $         \"0    @    "
-    "   !  $JA0 X    P    !@    @    &          4    (               !          D         "
+    "    P %Z@0 X    P    !@    @    &          4    (               !          D         "
   }
   DataRecord {
     Tag			    DataTag0
@@ -3147,7 +3192,7 @@ Stateflow {
   chart {
     id			    2
     name		    "Scheduler/Modes"
-    windowPosition	    [571.5 119.25 786.75 540.75]
+    windowPosition	    [464.25 103.5 786.75 540.75]
     viewLimits		    [71.566 428.326 0 242.28]
     zoomFactor		    0.48
     screen		    [1 1 1920 1080 1.333333333333333]
