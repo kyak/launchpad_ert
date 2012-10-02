@@ -235,12 +235,17 @@ ifeq ($(BUILD_MODE), pil_application)
 endif
 
 ifeq ($(BUILD_MODE), real_time)
-  SRCS += $(MODULES) $(MODEL).$(TARGET_LANG_EXT) $(EXT_SRC) ert_main.c
+          ifeq ($(GEN_SAMPLE_MAIN),0)
+            SRCS += rt_main.c
+          else
+            SRCS += ert_main.$(TARGET_LANG_EXT)
+          endif
+  SRCS += $(MODULES) $(MODEL).$(TARGET_LANG_EXT) $(EXT_SRC)
   SRCS += $(TARGET_BLOCK_SRCS) $(TARGET_SRCS) 
 endif
 
 ifeq ($(BUILD_MODE), model_reference)
-  SRCS += $(subst ert_main.c,,$(MODULES))
+  SRCS += $(MODULES)
 endif
 
 OBJS = $(subst \,/,$(addsuffix $(OBJ_EXT), $(basename $(SRCS)))) 

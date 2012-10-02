@@ -7,8 +7,6 @@
     %warning Overriding example ert_main.c!
   %endif
 
-  %assign cFile = LibCreateSourceFile("Source", "Custom", "ert_main")
-
   %openfile tmpBuf
   static boolean_T OverrunFlag = 0;\
   
@@ -17,7 +15,7 @@
   %<LibWriteModelData()>\
   %closefile tmpBuf
   
-  %<LibSetSourceFileSection(cFile, "Definitions", tmpBuf)>
+  %<SLibCacheCodeToFile("mainSrc_data_defn", tmpBuf)>
   
   %openfile tmpBuf
   #include "%<LibGetMdlPubHdrBaseName()>.h"
@@ -32,7 +30,7 @@
   %endif
   %closefile tmpBuf
  
-  %<LibSetSourceFileSection(cFile, "Includes", tmpBuf)>
+  %<SLibCacheCodeToFile("mainSrc_incl", tmpBuf)>
   
   %openfile tmpBuf
   %assign fcnReturns = "void"
@@ -174,7 +172,7 @@
 
   %closefile tmpBuf
   
-  %<LibSetSourceFileSection(cFile, "Functions", tmpBuf)>
+  %<SLibCacheCodeToFile("mainSrc_fcn_defn", tmpBuf)>
   
 %endfunction
 
