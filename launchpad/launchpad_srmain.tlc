@@ -1,11 +1,13 @@
 %selectfile NULL_FILE
 
-%function FcnSingleTaskingMain() void
+%function FcnSingleTaskingMain(mainFileName) void
   
   %if GenerateSampleERTMain
     %assign ::CompiledModel.GenerateSampleERTMain = TLC_FALSE
-    %warning Overriding example ert_main.c!
+    %warning Overriding example (e)rt_main.c!
   %endif
+
+  %assign cFile = LibCreateSourceFile("Source", "Custom", mainFileName)
 
   %openfile tmpBuf
   static boolean_T OverrunFlag = 0;\
@@ -15,7 +17,7 @@
   %<LibWriteModelData()>\
   %closefile tmpBuf
   
-  %<SLibCacheCodeToFile("mainSrc_data_defn", tmpBuf)>
+  %<LibSetSourceFileSection(cFile, "Definitions", tmpBuf)>
   
   %openfile tmpBuf
   #include "%<LibGetMdlPubHdrBaseName()>.h"
@@ -30,7 +32,7 @@
   %endif
   %closefile tmpBuf
  
-  %<SLibCacheCodeToFile("mainSrc_incl", tmpBuf)>
+  %<LibSetSourceFileSection(cFile, "Includes", tmpBuf)>
   
   %openfile tmpBuf
   %assign fcnReturns = "void"
@@ -54,22 +56,18 @@
     
     /* Save FPU context here (if necessary) */
     /* Re-enable timer or interrupt here */
-    %if !IsModelReferenceTarget()
     %assign varsbuf = LibWriteModelInputs()
     %if varsbuf != ""
       /* Remove conditional, and set model inputs here */
       %<varsbuf>\
     %endif
-    %endif
     
     %<LibCallModelStep(0)>\
     
-    %if !IsModelReferenceTarget()
     %assign varsbuf = LibWriteModelOutputs()
     %if varsbuf != ""
       /* Remove conditional, and get model outputs here */
       %<varsbuf>\
-    %endif
     %endif
     
     OverrunFlag--;
@@ -172,8 +170,14 @@
 
   %closefile tmpBuf
   
-  %<SLibCacheCodeToFile("mainSrc_fcn_defn", tmpBuf)>
+  %<LibSetSourceFileSection(cFile, "Functions", tmpBuf)>
   
 %endfunction
 
-%<FcnSingleTaskingMain()>
+%if !IsModelReferenceTarget()
+%%Might call %matlab here to find the version and use ert_main/rt_main
+%%accordingly.. From the other hand side, using the same name is even better
+  %assign mdlName = LibGetModelName()
+  %assign mainFileName = "main_%<mdlName>"
+  %<FcnSingleTaskingMain(mainFileName)>
+%endif
