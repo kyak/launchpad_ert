@@ -15,6 +15,7 @@ slConfigUISetEnabled(hDlg, hSrc, 'ModelReferenceCompliant', false);
 slConfigUISetVal(hDlg, hSrc, 'SolverType', 'Fixed-step');
 slConfigUISetVal(hDlg, hSrc, 'Solver', 'FixedStepDiscrete');
 
-% Use our own ert_main.c
+% Use our own ert_main.c and disable this option at all
 slConfigUISetVal(hDlg, hSrc, 'ERTCustomFileTemplate', 'launchpad_srmain.tlc');
-slConfigUISetVal(hDlg, hSrc, 'GenerateSampleERTMain', 'off'); 
+slConfigUISetVal(hDlg, hSrc, 'GenerateSampleERTMain', 'off');
+slConfigUISetEnabled(hDlg, hSrc, 'GenerateSampleERTMain',0);
