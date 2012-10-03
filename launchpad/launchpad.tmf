@@ -236,7 +236,7 @@ endif
 
 ifeq ($(BUILD_MODE), real_time)
           ifeq ($(GEN_SAMPLE_MAIN),0)
-            SRCS += rt_main.c
+            SRCS += main_$(MODEL).c
           else
             SRCS += ert_main.$(TARGET_LANG_EXT)
           endif
