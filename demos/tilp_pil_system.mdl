@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.129"
+    ComputedModelVersion    "1.135"
     NumModelReferences	    1
     ModelReference {
       ModelRefBlockPath	      "tilp_pil_system/Subsystem|tilp_pil"
@@ -44,7 +44,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [441.0, 281.0, 831.0, 459.0]
+      Location		      [484.0, 287.0, 831.0, 459.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -80,9 +80,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "peselnikmg"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Sep 18 10:32:12 2012"
-  RTWModifiedTimeStamp	  265646509
-  ModelVersionFormat	  "1.%<AutoIncrement:129>"
+  LastModifiedDate	  "Tue Oct 09 10:44:33 2012"
+  RTWModifiedTimeStamp	  271680270
+  ModelVersionFormat	  "1.%<AutoIncrement:135>"
   ConfigurationManager	  "customverctrl"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -480,12 +480,12 @@ Model {
 	  RTWUseSimCustomCode	  off
 	  IncludeHyperlinkInReport on
 	  LaunchReport		  off
-	  PortableWordSizes	  off
+	  PortableWordSizes	  on
 	  GenerateErtSFunction	  off
 	  CreateSILPILBlock	  "None"
-	  CodeExecutionProfiling  off
+	  CodeExecutionProfiling  on
 	  CodeExecutionProfileVariable "executionProfile"
-	  CodeProfilingSaveOptions "SummaryOnly"
+	  CodeProfilingSaveOptions "AllData"
 	  CodeProfilingInstrumentation off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
@@ -742,8 +742,8 @@ Model {
       }
       Name		      "Configuration"
       ExtraOptions	      "-aGenerateTraceInfo=1 -aIgnoreTestpoints=0 "
-      CurrentDlgPage	      "Hardware Implementation"
-      ConfigPrmDlgPosition     [ 325, 79, 1271, 886 ] 
+      CurrentDlgPage	      "Code Generation/Verification"
+      ConfigPrmDlgPosition     [ 536, 107, 1609, 985 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -872,7 +872,7 @@ Model {
   }
   System {
     Name		    "tilp_pil_system"
-    Location		    [441, 281, 1272, 740]
+    Location		    [484, 287, 1315, 746]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -941,9 +941,9 @@ Model {
 	MarkerStyles		"none|none|none|none|none|none"
       }
       ShowLegends	      off
-      TimeRange		      "10"
-      YMin		      "250"
-      YMax		      "260"
+      TimeRange		      "12"
+      YMin		      "510"
+      YMax		      "520"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }
@@ -956,7 +956,7 @@ Model {
       ZOrder		      1
       ModelNameDialog	      "tilp_pil"
       SimulationMode	      "Processor-in-the-loop (PIL)"
-      ModelReferenceVersion   "1.105"
+      ModelReferenceVersion   "1.113"
       List {
 	ListType		InputPortNames
 	port0			"In1"

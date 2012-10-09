@@ -1,7 +1,6 @@
 - Think about the best way to separate serial read/write
 - Non-blocking serial read (how to deliver result to the model?...)
 - New blocks: ADC, DAC, PWM
-- PIL Profiling
 - What if PIL mode is enabled with serial read/write blocks?...
 - Other chips than 2553
 - More robust installation

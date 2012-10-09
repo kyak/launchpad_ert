@@ -80,7 +80,7 @@ classdef ConnectivityConfig < rtw.connectivity.Config
             % Optionally, you can register a hardware-specific timer. Registering a timer
             % enables the code execution profiling feature. In this example
             % implementation, we use a timer for the host platform.
-            timer = rtw.pil.HostTimer;
+            timer = launchpad.Timer;
             this.setTimer(timer);
             
         end

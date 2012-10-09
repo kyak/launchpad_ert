@@ -38,10 +38,10 @@ What this package already has:
         * Built-in temperature sensor
         * Push button
 - Execution in PIL mode
+- PIL mode profiling
 
 What this package would like to have:
 - More Simulink blocks
 - Support for other LaunchPad compatible MCUs
 - Multirate support
-- PIL execution profiling
 - More documentation
