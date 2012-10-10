@@ -41,7 +41,6 @@ What this package already has:
 - PIL mode profiling
 
 What this package would like to have:
-- More Simulink blocks
+- More Simulink blocks (Generic ADC, PWM...)
 - Support for other LaunchPad compatible MCUs
-- Multirate support
 - More documentation

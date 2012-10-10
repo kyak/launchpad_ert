@@ -13,8 +13,6 @@
    It also means that such BSW needs to be configurable - because our model
    might not have all of the supported blocks in it. What is the best way to
    configure BSW? Auto generate the file during build...?
-- Support for multirate/reference models. This especially makes sense it we don't have BSW.
-  Some models can run at higher speeds to "emulate" BSW...
 - It is possible to sleep when waiting for temperature readings. Then ADC10_ISR will
   just wake up the program when reading is ready. I guess this 
   is something in between "stupid blocking mode with __delay" and "ISR + smart BSW" :)
