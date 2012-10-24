@@ -17,7 +17,14 @@ classdef Launcher < rtw.connectivity.Launcher
         function startApplication(this)
             % get name of the executable file
             exe = this.getBuilder.getApplicationExecutable; 
-			launchpad_download(exe,'PIL');
+            % allow a back door for tests to skip download to hardware
+            downloadToLaunchPad = 1;
+            if evalin('base','exist(''downloadToLaunchPad'')')
+                downloadToLaunchPad = evalin('base', 'downloadToLaunchPad' );
+            end
+            if downloadToLaunchPad
+                launchpad_download(exe,'PIL');
+            end
 			disp('### Starting PIL execution on TI LaunchPad');
         end
         
