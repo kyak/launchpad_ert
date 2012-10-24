@@ -25,9 +25,13 @@ if isunix
 	else
 		error('Your setup is not complete!');
     end
-	cd('rtiostreamserial_host');
-	system(['make',' CFLAGS=-I',matlabroot,'/extern/include']);
-	cd(curpath);
+    if verLessThan('matlab', '8.0')
+        %MATLAB < R2012b didn't have host rtiostreamserial implementation
+        %for Linux, so use our own.
+        cd('rtiostreamserial_host');
+        system(['make',' CFLAGS=-I',matlabroot,'/extern/include']);
+        cd(curpath);
+    end
 else
 	[CCSRoot, CompilerRoot] = ccs_setup_paths;
 	addpref('launchpad','CCSRoot',CCSRoot);
@@ -38,6 +42,8 @@ lct_genblocks;
 cd(curpath);
 sl_refresh_customizations;
 disp('TI LaunchPad Target setup is complete!');
+disp('<strong>!!! Make sure you''ve crossed TX/RX jumpers on LaunchPad board !!!</strong>');
+disp('Otherwise, Serial connection and PIL won''t work');
 end
 
 function [CCSRoot, CompilerRoot] = ccs_setup_paths()

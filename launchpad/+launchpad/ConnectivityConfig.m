@@ -30,7 +30,12 @@ classdef ConnectivityConfig < rtw.connectivity.Config
 
             % Evaluate name of the rtIOStream shared library
             if isunix
-                prefix = [getpref('launchpad','TargetRoot'),'/rtiostreamserial_host/lib'];
+                if verLessThan('matlab', '8.0')
+                    prefix = [getpref('launchpad','TargetRoot'),'/rtiostreamserial_host/lib'];
+                else
+                    %Use shipped host implementation starting from R2012b
+                    prefix='libmw';
+                end
             else
                 prefix='libmw';
             end
