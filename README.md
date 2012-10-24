@@ -23,9 +23,12 @@ both mspgcc and CCSv5 on Linux.
 Make sure your toolchain is working (build and download some test project, check connection)
 before you proceed!
 
-2) Extract this package somewhere. Make sure you have a working/supported
-host compiler (http://www.mathworks.com/support/compilers/R2012b/index.html) by running 'mex -setup' in MATLAB.
-Within MATLAB, 'cd' to the directory containing launchpad_setup.m and run this script.
+2) a) Extract this package somewhere. Make sure there are no spaces/non-ascii characters in path (just in case).
+   b) Make sure you have a working/supported host compiler (http://www.mathworks.com/support/compilers/R2012b/index.html)
+	  by running 'mex -setup' in MATLAB.
+   c) Within MATLAB, 'cd' to the directory containing launchpad_setup.m and run this script.
+   d) Swap TX/RX jumpers on TI LaunchPad (see the group of 5 jumpers on your board). This package uses HW UART (see inscription on the board).
+	  If you don't do this, Serial Read/Write blocks and PIL will not work.
 
 3) You should be good to go.
 
@@ -37,7 +40,7 @@ What this package already has:
         * LED
         * Built-in temperature sensor
         * Push button
-- Execution in PIL mode
+- Execution in PIL mode (hardware UART - you must swap TX/RX jumpers on your LaunchPad)
 - PIL mode profiling
 
 What this package would like to have:
