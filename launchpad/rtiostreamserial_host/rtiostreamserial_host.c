@@ -74,7 +74,9 @@ int rtIOStreamRecv(
     size_t * sizeRecvd) /* The number of units of data received and copied into the buffer dst (zero if no data was copied). */
 {
 	/* TODO: catch errors */
-	/* printf("rtIOStreamRecv: entering...\n"); */
+    #ifdef DEBUG_RCV
+        printf("rtIOStreamRecv: entering...\n");
+    #endif
 	*sizeRecvd = read(streamID, dst, size);
 	if (*sizeRecvd == -1)
 		*sizeRecvd = 0;
@@ -89,7 +91,9 @@ int rtIOStreamSend(
     size_t     * sizeSent)
 {
 	/* TODO: catch errors */
-	/* printf("rtIOStreamSend: entering...\n"); */
+    #ifdef DEBUG_SND
+        printf("rtIOStreamSend: entering...\n");
+    #endif
 	*sizeSent = write(streamID, src, size);
     return RTIOSTREAM_NO_ERROR;
 }
