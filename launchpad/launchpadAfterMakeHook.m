@@ -5,8 +5,15 @@ if (strcmp(get_param(modelName,'SystemTargetFile')  ,'launchpad.tlc') && ...
     strcmp(get_param(modelName,'TargetHWDeviceType'),'Texas Instruments->MSP430'))
   
     % Check if user chose to Download to Launchpad in Settings
-    makertwObj = get_param(gcs, 'MakeRTWSettingsObject');
-    makertwArgs = makertwObj.BuildInfo.BuildArgs;
+    if verLessThan('matlab', '8.1')
+        makertwObj = get_param(gcs, 'MakeRTWSettingsObject');
+        makertwArgs = makertwObj.BuildInfo.BuildArgs;
+    else
+        % See R2013a Simulink Coder release notes.
+        makertwObj = rtwprivate('get_makertwsettings',gcs,'BuildInfo');
+        makertwArgs = makertwObj.BuildArgs;
+    end
+
     downloadToLaunchPad = 1;
     for i=1:length(makertwArgs)
         if strcmp(makertwArgs(i).DisplayLabel,'LAUNCHPAD_DOWNLOAD')
