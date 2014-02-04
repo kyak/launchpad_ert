@@ -16,10 +16,16 @@ end
 if (ischar(makertwObj)) %String 'PIL'
 	outfile = modelName;
 else
-	outfile = fullfile(makertwObj.BuildDirectory, [modelName, '.out']);
+    outfile = [modelName, '.out'];
+	%outfile = fullfile(makertwObj.BuildDirectory, [modelName, '.out']);
 end
 if isunix
 	system(['mspdebug rf2500 ''prog ',outfile,'''']);
+    if (ischar(makertwObj)) %Stupid workaround for PIL
+        %system(['jpnevulator --tty /dev/',getpref('launchpad','COMPort'),':SB2400d --write 2>&1 > /dev/null &']);
+        %con = rtiostream_wrapper('libmwrtiostreamserial.so','open','-port','ttyACM0','-baud','2400');
+		%stty 2400 -F .. might help?? Try it..
+    end
 else
 	%system(['"',CCSRoot,'/ccs_base/scripting/bin/trace_dss.bat" ',...
     %	'"',matlabroot,'/toolbox/idelink/extensions/ticcs/ccsdemos/runProgram.js" ',...
