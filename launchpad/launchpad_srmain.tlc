@@ -124,15 +124,47 @@
 
   void ConfigClocks(void)
   {
-    if (CALBC1_1MHZ ==0xFF || CALDCO_1MHZ == 0xFF)
-    FaultRoutine(); // If calibration data is erased
-                    // run FaultRoutine()
-    BCSCTL1 = CALBC1_1MHZ; // Set range
-    DCOCTL = CALDCO_1MHZ; // Set DCO step + modulation
-    BCSCTL3 |= LFXT1S_2; // LFXT1 = VLO
-    IFG1 &= ~OFIFG; // Clear OSCFault flag
-    BCSCTL2 |= SELM_0 + DIVM_3 + DIVS_3; // MCLK = DCO/8, SMCLK = DCO/8
-    //BCSCTL2 = 0; //to drive MCLK and SMCLK directly from DCO
+    /* 
+     * Basic Clock System Control 2
+     * 
+     * SELM_0 -- DCOCLK
+     * DIVM_0 -- Divide by 1
+     * ~SELS -- DCOCLK
+     * DIVS_3 -- Divide by 8
+     * ~DCOR -- DCO uses internal resistor
+     * 
+     * Note: ~<BIT> indicates that <BIT> has value zero
+     */
+    BCSCTL2 = SELM_0 | DIVM_0 | DIVS_3;
+
+    if (CALBC1_1MHZ != 0xFF) {
+        /* Follow recommended flow. First, clear all DCOx and MODx bits. Then
+         * apply new RSELx values. Finally, apply new DCOx and MODx bit values.
+         */
+        DCOCTL = 0x00;
+        BCSCTL1 = CALBC1_1MHZ;      /* Set DCO to 1MHz */
+        DCOCTL = CALDCO_1MHZ;
+    }
+
+    /* 
+     * Basic Clock System Control 1
+     * 
+     * XT2OFF -- Disable XT2CLK
+     * ~XTS -- Low Frequency
+     * DIVA_0 -- Divide by 1
+     * 
+     * Note: ~XTS indicates that XTS has value zero
+     */
+    BCSCTL1 |= XT2OFF | DIVA_0;
+
+    /* 
+     * Basic Clock System Control 3
+     * 
+     * XT2S_0 -- 0.4 - 1 MHz
+     * LFXT1S_2 -- If XTS = 0, XT1 = VLOCLK ; If XTS = 1, XT1 = 3 - 16-MHz crystal or resonator
+     * XCAP_1 -- ~6 pF
+     */
+    BCSCTL3 = XT2S_0 | LFXT1S_2 | XCAP_1;
   }
 
   void FaultRoutine(void)
