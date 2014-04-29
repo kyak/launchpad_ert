@@ -5,3 +5,6 @@ ATTRS{idVendor}=="0451", ATTRS{idProduct}=="f432", GROUP="users", MODE="0660", R
 #http://dbindner.freeshell.org/msp430/index.html#Talking_to_MSP430
 #http://log.or.cz/?p=265
 #https://github.com/energia/Energia/wiki/Linux-Serial-Communication
+#Well... none of these worked for me. But, using jpnevulator like this:
+#jpnevulator --tty /dev/ttyACM0:SB2400d --write
+#helps (sometimes).
