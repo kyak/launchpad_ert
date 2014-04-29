@@ -3,7 +3,8 @@
 # Compiler command and options
 CC = "$(CompilerRoot)/bin/cl430"
 CFLAGS = -vmsp --abi=eabi --include_path="$(CCSRoot)/ccs_base/msp430/include" \
-         --include_path="$(CompilerRoot)/include" --define=__MSP430G2553__
+         --include_path="$(CompilerRoot)/include" --define=__MSP430G2553__ \
+         --define=SKIP_STATIC_CODE_METRICS
 
 CFLAGS += $(OPTS)
 #CDEBUG = -g -k -s -O0
