@@ -2,10 +2,11 @@
 
 # Compiler command and options
 CC = "$(CompilerRoot)/bin/cl430"
-CFLAGS = -vmsp --abi=eabi -g --include_path="$(CCSRoot)/ccs_base/msp430/include" \
+CFLAGS = -vmsp --abi=eabi --include_path="$(CCSRoot)/ccs_base/msp430/include" \
          --include_path="$(CompilerRoot)/include" --define=__MSP430G2553__
 
 CFLAGS += $(OPTS)
+#CDEBUG = -g -k -s -O0
 CDEBUG = -g
 CCOUTPUTFLAG = --output_file=
 
@@ -15,7 +16,7 @@ CXXDEBUG =
 
 # Linker command and options
 LD      = $(CC)
-LDFLAGS = -vmsp --abi=eabi -g --define=__MSP430G2553__ -z --stack_size=80 \
+LDFLAGS = -vmsp --abi=eabi --define=__MSP430G2553__ -z --stack_size=80 \
           -m"$(MODEL).map" --heap_size=80 -i"$(CCSRoot)/ccs_base/msp430/include" \
           -i"$(CompilerRoot)/lib" -i"$(CompilerRoot)/include" --reread_libs \
           --rom_model "$(CCSRoot)/ccs_base/msp430/include/lnk_msp430g2553.cmd"
