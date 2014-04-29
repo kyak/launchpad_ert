@@ -1,3 +1,6 @@
+#ifdef __MW_CODE_METRICS__
+#include "code_metrics.h"
+#endif
 #include <msp430.h>      
 #include "rtiostream.h"
 #include "rtwtypes.h"

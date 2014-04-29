@@ -46,8 +46,10 @@ if (strcmp(get_param(modelName,'SystemTargetFile')  ,'launchpad.tlc') && ...
     % For static code metrics this needs to be in the buildinfo object.
     makertwObj = rtwprivate('get_makertwsettings',modelName,'BuildInfo');
     addDefines(makertwObj, '-D__MSP430G2553__', 'OPTS');
+    addIncludePaths(makertwObj, fullfile(TargetRoot, 'code_metrics'));
     if (isunix && ispref('launchpad','MSPGCC'))
-        addIncludePaths(makertwObj, ['/usr/msp430/include']);
+        addIncludePaths(makertwObj, '/usr/msp430/include');
+        addDefines(makertwObj, '-DMSPGCC', 'OPTS');
     else
         addIncludePaths(makertwObj, [CCSRoot,'/ccs_base/msp430/include']);
     end

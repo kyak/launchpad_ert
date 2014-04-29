@@ -1,4 +1,7 @@
 #ifndef MATLAB_MEX_FILE
+#ifdef __MW_CODE_METRICS__
+#include "code_metrics.h"
+#endif
 #include <msp430.h>
 #endif
         

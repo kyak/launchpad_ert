@@ -1,4 +1,7 @@
 #ifndef MATLAB_MEX_FILE
+#ifdef __MW_CODE_METRICS__
+#include "code_metrics.h"
+#endif
 #include <msp430.h>
 #endif
         
@@ -42,9 +45,6 @@ unsigned char button_get(void)
  * Port Interrupt for Button Press
  * *********************************************************** */
 #ifndef MATLAB_MEX_FILE
-#ifdef __MW_CODE_METRICS__
-  #define __interrupt
-#endif
 #pragma vector=PORT1_VECTOR
 __interrupt void PORT1_ISR (void)
 {

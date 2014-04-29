@@ -21,6 +21,9 @@
   
   %openfile tmpBuf
   #include "%<LibGetMdlPubHdrBaseName()>.h"
+  #ifdef __MW_CODE_METRICS__
+  #include "code_metrics.h"
+  #endif
   #include <msp430.h>
   %if %<CompiledModel.FundamentalStepSize> < 0.000084 || %<CompiledModel.FundamentalStepSize> > 5.46125
     %warning Model step size must be between 0.000084 and 5.46125 seconds
@@ -189,9 +192,6 @@
     TACTL = TASSEL_1 + MC_2; //TASSEL_2 for SMCLK
   }
 
-  #ifdef __MW_CODE_METRICS__
-    #define __interrupt
-  #endif
   #pragma vector=TIMER0_A0_VECTOR
   __interrupt void Timer_A (void)
   {
