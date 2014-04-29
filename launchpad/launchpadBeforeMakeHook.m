@@ -44,7 +44,7 @@ else
 end
 
 % For static code metrics this needs to be in the buildinfo object.
-makertwObj = rtwprivate('get_makertwsettings',gcs,'BuildInfo');
+makertwObj = rtwprivate('get_makertwsettings',modelName,'BuildInfo');
 addDefines(makertwObj, '-D__MSP430G2553__', 'OPTS');
 addIncludePaths(makertwObj, [CCSRoot,'/ccs_base/msp430/include']);
 end
