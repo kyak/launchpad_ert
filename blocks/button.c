@@ -42,7 +42,9 @@ unsigned char button_get(void)
  * Port Interrupt for Button Press
  * *********************************************************** */
 #ifndef MATLAB_MEX_FILE
-#ifdef SKIP_STATIC_CODE_METRICS
+#ifdef __MW_CODE_METRICS__
+  #define __interrupt
+#endif
 #pragma vector=PORT1_VECTOR
 __interrupt void PORT1_ISR (void)
 {
@@ -77,5 +79,4 @@ __interrupt void PORT1_ISR (void)
     P1IE |= BUTTON;
 }
 
-#endif
 #endif

@@ -189,7 +189,9 @@
     TACTL = TASSEL_1 + MC_2; //TASSEL_2 for SMCLK
   }
 
-  #ifdef SKIP_STATIC_CODE_METRICS
+  #ifdef __MW_CODE_METRICS__
+    #define __interrupt
+  #endif
   #pragma vector=TIMER0_A0_VECTOR
   __interrupt void Timer_A (void)
   {
@@ -200,7 +202,6 @@
     //P1OUT &= ~BIT6; // green LED off
     //P1OUT ^= BIT6; // toggle green LED
   }
-  #endif
 
   %closefile tmpBuf
   
