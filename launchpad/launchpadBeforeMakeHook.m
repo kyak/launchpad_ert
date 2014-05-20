@@ -44,13 +44,28 @@ if (strcmp(get_param(modelName,'SystemTargetFile')  ,'launchpad.tlc') && ...
     end
     
     % For static code metrics this needs to be in the buildinfo object.
-    makertwObj = rtwprivate('get_makertwsettings',modelName,'BuildInfo');
-    addDefines(makertwObj, '-D__MSP430G2553__', 'OPTS');
-    addIncludePaths(makertwObj, fullfile(TargetRoot, 'code_metrics'));
+    buildInfo = rtwprivate('get_makertwsettings',modelName,'BuildInfo');
+    addDefines(buildInfo, '-D__MSP430G2553__', 'OPTS');
+    addIncludePaths(buildInfo, fullfile(TargetRoot, 'code_metrics'));
     if (isunix && ispref('launchpad','MSPGCC'))
-        addIncludePaths(makertwObj, '/usr/msp430/include');
-        addDefines(makertwObj, '-DMSPGCC', 'OPTS');
+        addIncludePaths(buildInfo, '/usr/msp430/include');
+        addDefines(buildInfo, '-DMSPGCC', 'OPTS');
     else
-        addIncludePaths(makertwObj, [CCSRoot,'/ccs_base/msp430/include']);
+        addIncludePaths(buildInfo, [CCSRoot,'/ccs_base/msp430/include']);
     end
+    
+    % For PIL mode, remove main_MODEL.c from sources (to avoid errors in top
+    % model PIL). TODO: this should be done somehow in main.tlc.
+    fname = ['main_',modelName,'.c'];
+    if i_isPIL(buildInfo) && exist(fname,'file')
+        % Dummy main_MODEL.c file
+        csvwrite(fname,[]);
+    end
+end
+end
+
+
+function isPIL = i_isPIL(buildInfo)
+buildOpts = rtwprivate('get_makertwsettings',buildInfo.ModelName,'BuildOpts');
+isPIL = buildOpts.XilInfo.IsPil;
 end
