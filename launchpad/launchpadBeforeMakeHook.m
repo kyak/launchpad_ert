@@ -54,8 +54,25 @@ if (strcmp(get_param(modelName,'SystemTargetFile')  ,'launchpad.tlc') && ...
         addIncludePaths(buildInfo, [CCSRoot,'/ccs_base/msp430/include']);
     end
     
-    % For PIL mode, remove main_MODEL.c from sources (to avoid errors in top
-    % model PIL). TODO: this should be done somehow in main.tlc.
+    % When static code metrics is enabled, it is not enough to remove the
+    % main_MODEL.c from TMF, which i did (see how i mangle the PREBUILT_SRCS in
+    % TMF). With static code metrics + Top model PIL, i get the error from
+    % static code analyzer:
+    %
+    % Function 'main' is defined multiple times in pil_main.c, main_MODEL.c.
+    %
+    % Removing main_MODEL.c from sources (see remSourceFiles in Stellaris
+    % target) is also not enough - at least at this stage (perhaps it would work
+    % at PostCodeGen). The main_MODEL.c has found its way into |>MODEL_SOURCES<|
+    % token by this stage, and removing it from there doesn't help either.
+    %
+    % Deleting main_MODEL.c is a bad idea, because Embedded Coder starts
+    % complaining about missing files. So i just empty the file.
+    %
+    % TODO: Of course, this should be done somehow in main.tlc. The problem is
+    % how to detect PIL mode from within TLC (similar to detection of Model
+    % Reference build).
+    
     fname = ['main_',modelName,'.c'];
     if i_isPIL(buildInfo) && exist(fname,'file')
         % Dummy main_MODEL.c file
